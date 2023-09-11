@@ -1,0 +1,113 @@
+#login-body-container {
+    width: 90%;
+    margin: 2rem auto;
+}
+
+#login-main-container {
+    border: var(--main-theme-color) solid 3px;
+    border-radius: 0.5rem;
+    background-color: antiquewhite;
+    width: 39%;
+    margin: 5rem auto;
+    padding: 2rem;
+}
+
+#login-title {
+    text-align: center;
+    color: var(--main-theme-color);
+}
+
+#login-form {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.input {
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    width: 96%;
+}
+
+.input-label,
+.input-field {
+    height: 1.7rem;
+}
+
+.input-label {
+    width: fit-content;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.input-label h4 {
+    color: var(--main-theme-color);
+}
+
+.input-field {
+    border: var(--main-theme-color) solid 2px;
+    border-radius: 0.2rem;
+    width: 100%;
+    margin: 0;
+    text-indent: 0.5rem;
+}
+
+#submit-button {
+    display: flex;
+    margin: 1rem auto;
+    padding: 0.3rem;
+    width: 100%;
+    height: max-content;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.3rem;
+    background-color: var(--main-theme-color);
+    border: rgb(238, 238, 238) solid 2px;
+}
+
+#submit-button:active {
+    background-color: var(--second-theme-color);
+    transform: var(--button-action);
+}
+
+#submit-button h4 {
+    margin: 0.5rem;
+    color: rgb(238, 238, 238);
+}
+
+#redirect-to-register {
+    margin: 3rem auto 3rem auto;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+#redirect-to-register-link {
+    text-decoration: none;
+}
+
+#third-party-auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#third-party-auth-container h4 {
+    margin: 0;
+    color: var(--main-theme-color);
+}
+
+.third-party-auth-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.third-party-auth {
+    margin: 1rem 2rem;
+}
+
+
+

@@ -1,0 +1,10 @@
+#orders-list-loading-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.order-loading-box {
+    width: 100%;
+}
+
+

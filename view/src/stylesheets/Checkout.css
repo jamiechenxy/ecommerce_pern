@@ -1,0 +1,128 @@
+#checkout-body-container {
+    width: 90%;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#checkout-delivery-info-box {
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#checkout-delivery-box-info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#checkout-delivery-box-title {
+    margin-left: 1rem;
+}
+
+.checkout-delivery-info-content {
+    margin: 1rem 2rem;
+}
+
+#checkout-items-box {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkout-item-cube {
+    width: 40%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.checkout-item-price-quantity-cube {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#checkout-payment-info-cube {
+    box-shadow: var(--box-shadow);
+    width: 57%;
+    min-height: 19rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+#checkout-payment-amount {
+    margin: 3rem auto 2rem auto;
+    text-align: center;
+    line-height: 3;
+}
+
+#checkout-payment-amount span {
+    background-color: var(--main-theme-color);
+    border-radius: 0.15rem;
+    border: var(--main-theme-color) solid 0.4rem;
+    color: rgb(235, 148, 42);
+}
+
+#checkout-payment-button {
+    width: 70%;
+    height: fit-content;
+    border-radius: 2rem;
+    width: 60%;
+    border: whitesmoke solid 2px;
+    background-color: var(--main-theme-color);
+    cursor: pointer;
+    color: whitesmoke;
+    padding: 0.95rem 0;
+    margin-top: 0.9rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    word-spacing: 0.2rem;
+}
+
+#checkout-payment-button:active {
+    background-color: var(--second-theme-color);
+    transform: var(--button-action);
+}
+
+#active-checkout-payment-button {
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    width: 30%;
+    height: 5rem;
+    font-style: italic;
+    color: var(--second-theme-color);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 auto;
+    padding: 0;
+    display: grid;
+    grid-template: 1fr / 1fr 1fr 3fr;
+    align-items: center;
+}
+
+#payment-loading-animation {
+    width: 5rem;
+    grid-area: 1 / 1 / 2 / 2;
+    margin: 0;
+    padding: 0;
+    z-index: 5;
+    width: 2.37rem;
+}
+
+#payment-loading-text {
+    margin: 0;
+    padding: 0;
+    grid-area: 1/ 2 / 2 / 6;
+    text-align: left;
+}
+

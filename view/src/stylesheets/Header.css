@@ -1,0 +1,51 @@
+#user-active-header, 
+#primitive-header {
+    width: 90%;
+    min-height: 4rem;
+    margin: 0.2rem auto 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+    border-radius: 0.2rem;
+}
+
+#user-active-header:hover, 
+#primitive-header:hover {
+    box-shadow: var(--box-shadow-active-green);
+}
+
+.navigator,
+.active-navigator {
+    font-size: 1.15rem;
+    margin: 0.5rem auto;
+    font-weight: 500;
+}
+
+.navigator {
+    text-decoration: none;
+    color: var(--main-theme-color);
+}
+
+.navigator:hover {
+    text-decoration: none;
+    color: whitesmoke;
+    background-color: var(--main-theme-color);
+    border: var(--main-theme-color) solid 0.25rem;
+    border-radius: 0.25rem;
+}
+
+.navigator:active {
+    text-decoration: none;
+    background-color: var(--second-theme-color);
+    transform: var(--button-action);
+    border: var(--second-theme-color) solid 0.25rem;
+    border-radius: 0.25rem;
+    font-style: italic;
+}
+
+.active-navigator {
+    color: var(--second-theme-color);
+    font-style: italic;
+}
+

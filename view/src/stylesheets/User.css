@@ -1,0 +1,77 @@
+#profile-page-body-container {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: 2rem auto;
+}
+
+#profile-page-greeting {
+    margin: 3rem 0 4rem 0;
+}
+
+#profile-page-main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#user-profile-pic {
+    width: 35%;
+    border-radius: 50%;
+}
+
+#profile-page-user-info-box {
+    width: 40%;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#profile-page-user-info-box,
+#edit-profile-button {
+    margin: 2rem 0;
+}
+
+#edit-profile-button {
+    width: fit-content;
+    display: flex;
+    background-color: var(--main-theme-color);
+    color: whitesmoke;
+    border-radius: 0.3rem;
+    border: whitesmoke solid 1px;
+    padding: 0.35rem;
+}
+
+#edit-profile-button:active {
+    background-color: var(--second-theme-color);
+    transform: var(--button-action);
+}
+
+#edit-profile-button h5 {
+    margin: 0;
+}
+
+
+#sign-out-button {
+    margin: 10rem auto;
+    width: 50%;
+    height: 2.5rem;
+    border: whitesmoke solid 2px;
+    color: whitesmoke;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-theme-color);
+    border-radius: 2rem;
+}
+
+#sign-out-button:active {
+    background-color: var(--second-theme-color);
+    transform: var(--button-action);
+}
+
+
+
