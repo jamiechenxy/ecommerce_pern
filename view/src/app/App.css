@@ -1,10 +1,14 @@
 #root {
   font-size: 16px;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   padding: 0;
+  --main-font-style: 'Quicksand', sans-serif;
+  --logo-font-style: 'Reem Kufi Fun', sans-serif;
+  --logo-highlight-color: rgb(255, 119, 0);
   --main-theme-color: rgb(0, 78, 0);
   --second-theme-color: rgb(245, 150, 33);
+  --grey-theme-color: rgb(161, 161, 161);
   --box-shadow: 0.2rem 0.2rem 0.7rem darkgray;
   --box-shadow-active-green: 0.1rem 0.1rem 0.5rem rgb(8, 30, 8);
   --box-shadow-active-orange: 0.1rem 0.1rem 0.5rem rgb(218, 121, 2);
@@ -12,6 +16,9 @@
   --white-font-color: whitesmoke;
 }
 
+* {
+  font-family: var(--main-font-style);
+}
 
 
 
