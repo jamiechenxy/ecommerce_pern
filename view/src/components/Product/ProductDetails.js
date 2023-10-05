@@ -2,10 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectProductDetails } from "../../features/productSlice";
-import sampleImg from '../../img/sample.jpg';
 import { selectLoginStatus, selectUser } from "../../features/sessionSlice";
 import { handleAddItemToCart } from "../../features/cartSlice";
 import "../../stylesheets/ProductDetails.css";
+import familyWineryImg from '../../img/family-winery.png';
+import wine1Img from '../../img/wine1.png';
+
 
 const ProductDetails = () => {
     const loginStatus = useSelector(selectLoginStatus);
@@ -45,7 +47,7 @@ const ProductDetails = () => {
 
             <h2 id="product-details-title">{product.name}</h2>
                 
-            <img id="product-details-sample-img" src={sampleImg} alt="sample-img" />
+            <img id="product-details-sample-img" src={wine1Img} alt="sample-img" />
 
             <h4 id="product-details-name">{product.name}</h4>
 

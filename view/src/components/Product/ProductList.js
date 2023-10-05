@@ -12,7 +12,8 @@ import "../../stylesheets/ProductList.css";
 import TextLineLoading from "../../loading/TextLineLoading";
 import ProductListLoading from "../../loading/ProductListLoading";
 import "../../stylesheets/ProductListLoading.css";
-import sampleImg from '../../img/sample.jpg';
+import familyWineryImg from '../../img/family-winery.png';
+import wine1Img from '../../img/wine1.png';
 
 
 const ProductList = () => {
@@ -50,7 +51,7 @@ const ProductList = () => {
                             key={index} 
                             onClick={() => dispatch(setViewDetails(index))}
                         >
-                            <img className="product-list-sample-img" src={sampleImg} alt="sample_picture" />
+                            <img className="product-list-sample-img" src={wine1Img} alt="sample_picture" />
                             <ul className="product-info-cube">
                                 <li className="product-info-name">
                                     <h4 className="product-info-text">{product.name}</h4>

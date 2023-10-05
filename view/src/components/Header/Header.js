@@ -1,5 +1,5 @@
 import "../../stylesheets/Header.css";
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { selectLoginStatus, selectUser } from "../../features/sessionSlice";
 import { useSelector } from "react-redux";
@@ -8,12 +8,17 @@ import { GiGrapes } from "react-icons/gi";
 import { SlLocationPin } from "react-icons/sl";
 import { RiUserLine, RiSearchLine } from "react-icons/ri";
 import { MdOutlineLocalOffer } from "react-icons/md";
-
+import UserIconDropdown from "./UserIconDropdown";
 
 
 const Header = () => {
     const loginStatus = useSelector(selectLoginStatus);
     const userInfo = useSelector(selectUser);
+    const [showUserIconDropdown, setShowUserIconDropdown] = useState(false);
+
+    const handleClickUserIcon = () => {
+        showUserIconDropdown ? setShowUserIconDropdown(false) : setShowUserIconDropdown(true);
+    };
 
     return(
         <div id="header-container">
@@ -36,26 +41,31 @@ const Header = () => {
                     {
                         loginStatus ? 
                         <>
-                        <NavLink className="header-function-cube-nav" 
-                            to={`/${userInfo.firstName.toLowerCase()}`}
-                        >
-                            <RiUserLine id="header-user-icon" />
-                        </NavLink>
-                        <NavLink className="header-function-cube-nav" 
-                            to="/cart"
-                        >
-                            <PiShoppingCart id="header-cart-icon" />
-                        </NavLink>
+                            <NavLink className="header-function-cube-nav" 
+                                onClick={handleClickUserIcon}
+                            >
+                                <RiUserLine id="header-user-icon" />
+                                {showUserIconDropdown && 
+                                    <UserIconDropdown 
+                                        userInfo={userInfo}
+                                    />
+                                }
+                            </NavLink>
+
+                            <NavLink className="header-function-cube-nav" 
+                                to="/cart"
+                            >
+                                <PiShoppingCart id="header-cart-icon" />
+                            </NavLink>
                         </>
                         :
                         <>
-                        <NavLink className="header-function-cube-nav" 
-                            // className={({isActive})=>isActive?"active-navigator":"navigator"} 
-                            to="/login"
-                        >
-                            <RiUserLine id="header-user-icon" /> 
-                            <h6 id="header-sign-in-text">Sign In</h6>
-                        </NavLink>
+                            <NavLink className="header-function-cube-nav-unsigned-in"  
+                                to="/login"
+                            >
+                                <RiUserLine id="header-user-icon" /> 
+                                <h6 id="header-sign-in-text">Sign In</h6>
+                            </NavLink>
                         </>
                     }
                 </div>
