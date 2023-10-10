@@ -1,77 +1,179 @@
-#product-list-body-container {
-    width: 90%;
-    margin: 3rem auto;
+#products-body-container {
+    /* border: navy solid 1px; */
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-#product-list-headline-container {
+#products-headline-container {
+    /* border: navy solid 1px; */
     text-align: center;
-    width: 90%;
-    margin: 2rem 0 3rem 2rem;
+    margin: 3rem auto 3rem 7rem;
     color: var(--main-theme-color);
 }
 
-#product-list-main-container {
+#products-main-container {
+    /* border: navy solid 1px; */
+    margin: 0 7rem;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.product-list-box {
-    max-width: 25%;
-    margin: 2rem;
-    text-decoration: none;
-    display: grid;
-    grid-template: repeat(5 1fr) / repeat(4 1fr);
+/* filters */
+#products-filters-container {
+    /* border: aquamarine solid 1px; */
+    width: 35%;
 }
 
-.product-list-sample-img:hover {
-    box-shadow: var(--box-shadow-active-orange);
-}
 
-.product-list-sample-img {
-    box-shadow: var(--box-shadow);
-    max-width: 100%;
-    margin: 0 auto;
-    grid-area: 1 / 1 / 4 / 4;
-}
-
-.product-info-cube {
-    grid-area: 4 / 1 / 5 / 5;
-    z-index: 5;
-    padding: 0rem;
+/* product list */
+#products-product-list-container {
+    /* border: darkgoldenrod solid 1px; */
+    width: 65%;
     display: flex;
     flex-direction: column;
+    /* flex-wrap: wrap; */
+    align-items: end;
+}
+
+/* product */
+.product-container {
+    border: var(--grey-theme-color) solid 0.05rem;
     width: 100%;
-    margin: 0 auto; 
-}
-
-.product-info-name,
-.product-info-price {
-    color: var(--main-theme-color);
-    list-style: none;
+    height: 18rem;
+    margin: 1.5rem 0;
     text-decoration: none;
+    position: relative;
+    border-radius: 2rem;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
 }
 
-.product-info-name {
-    grid-area: 4 / 2 / 5 / 2;
-    margin-top: 1.5rem;
-    margin-bottom: 0.7rem;
+.product-container:hover {
+    box-shadow: var(--box-shadow);
 }
 
-.product-info-price {
-    grid-area: 4 / 4 / 5 / 4;
+/* -- product image */
+.product-img,
+.product-img-hovered {
+    position: relative;
+    min-width: 10.5%;
+    max-height: 22rem;
+    min-height: 18rem;
+    left: 2.8rem;
+    transition: transform 0.2s ease-in-out;
+    margin-bottom: 1rem;
 }
 
-.product-info-text {
+.product-img {
+    top: -1.5%;
+}
+
+.product-img-hovered {
+    top: -2.0%;
+    transform: scale(1.02) translate(0, -0.2rem);
+}
+
+/* -- product info box */
+.product-box {
+    /* border: rebeccapurple solid 1px; */
+    margin-left: 11%;
+    height: 100%;
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* -- -- product wine info */
+.product-wine-info-cube {
+    /* border: black solid 1px; */
+    width: 70%;
+    list-style: none; 
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.product-wine-info-row {
+    /* border: red solid 1px; */
+    display: flex;
+    margin: 0.4rem 0;
+}
+
+.product-wine-info-row h4 {
     margin: 0;
+    color: black;
 }
 
+.product-wine-info-winery {
+    font-weight: 400;
+    font-size: 1.3rem;
+}
 
+.product-wine-info-grapes-vintage {
+    font-weight: 550;
+    font-size: 1.3rem;
+}
 
+.product-wine-info-region {
+    font-weight: 300;
+    font-size: 1.1rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    display: flex;
+    align-items: center;
+}
 
+.fi{
+    margin-right: 0.5rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+}
 
+/* -- -- product rating price */
+.product-rating-price-cube {
+    /* border: blueviolet solid 1px; */
+    width: 30%;
+    list-style: none; 
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-rating-price-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.5rem auto;
+}
+
+.product-rating {
+    font-size: 2.8rem;
+    font-weight: 500;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.product-star-rating {
+    font-size: 0.85rem;
+}
+
+ /* -- -- -- button */
+.product-cart-button {
+    width: 10rem;
+    height: 2.5rem;
+    border-radius: 2rem;
+    background-color: var(--main-theme-color);
+    border: none;
+}
+
+.product-cart-button h4 {
+    color: white;
+    margin: auto 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
 
 

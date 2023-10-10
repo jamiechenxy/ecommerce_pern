@@ -10,7 +10,7 @@ import Root from '../components/Root/Root';
 import Register from '../components/Register/Register';
 import User from '../components/User/User';
 import Login from '../components/Login/Login';
-import ProductList from '../components/Product/ProductList';
+import Products from '../components/Product/Products';
 import ProductDetails from '../components/Product/ProductDetails';
 import Cart from '../components/Cart/Cart';
 import Checkout from '../components/Checkout/Checkout';
@@ -23,7 +23,7 @@ import { UserInfoContext } from './Context';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={ <Root/> } >
-    <Route path='product' element={ <ProductList/> } />
+    <Route path='product' element={ <Products/> } />
     <Route path='product/:productId' element={ <ProductDetails /> } />
     <Route path='register' element={ <Register /> } />
     <Route path='login' element={ <Login /> } />
