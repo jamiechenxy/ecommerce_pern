@@ -87,7 +87,7 @@
 }
 
 /* -- -- product wine info */
-.product-wine-info-cube {
+.wine-info-cube {
     /* border: black solid 1px; */
     width: 70%;
     list-style: none; 
@@ -96,28 +96,28 @@
     padding: 0;
 }
 
-.product-wine-info-row {
+.wine-info-row {
     /* border: red solid 1px; */
     display: flex;
     margin: 0.4rem 0;
 }
 
-.product-wine-info-row h4 {
+.wine-info-row h4 {
     margin: 0;
     color: black;
 }
 
-.product-wine-info-winery {
+.wine-info-winery {
     font-weight: 400;
     font-size: 1.3rem;
 }
 
-.product-wine-info-grapes-vintage {
+.wine-info-grapes-vintage {
     font-weight: 550;
     font-size: 1.3rem;
 }
 
-.product-wine-info-region {
+.wine-info-region {
     font-weight: 300;
     font-size: 1.1rem;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -150,7 +150,7 @@
     margin: 0.5rem auto;
 }
 
-.product-rating {
+.wine-rating {
     font-size: 2.8rem;
     font-weight: 500;
     font-family: 'Times New Roman', Times, serif;

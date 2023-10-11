@@ -6,12 +6,11 @@ export const loadProductList = createAsyncThunk(
     async () => {
         const response = await getProducts();
 
-        return response.map((obj) => ({
-            ...obj,
-            productDetails: [],
-            loadingDetails: false,
-            errorWithDetails: false,
-        }));
+        response.forEach(obj => {
+            obj.grapes = obj.grapes.split(',').map(ele => ele.trim());
+        });
+
+        return response;
     }
 );
 

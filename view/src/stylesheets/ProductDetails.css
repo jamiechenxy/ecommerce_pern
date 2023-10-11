@@ -1,36 +1,62 @@
-#product-details-container {
-    width: 88%;
-    margin: 2rem auto;
-    display: grid;
-    grid-template: repeat(6 1fr) / repeat(4 1fr);
-    color: var(--main-theme-color);
-    justify-content: space-evenly;
-    align-items: center;
-    box-shadow: var(--box-shadow);
-    padding-bottom: 5rem;
+/* main container */
+#product-details-main-container {
+    display: flex;
+    flex-direction: column;
 }
 
-#product-details-title {
-    margin: 3rem 0;
+/* make all sub containers the same margin */
+/* #product-details-1st-container,
+#product-details-2nd-container,
+#product-details-3rd-container {
+    margin: 0 7rem;
+    
+} */
+
+/* 1st container */
+#product-details-1st-container {
+    background-color: rgb(253, 252, 244);
+    border: fuchsia solid 1px;
+    height: 50rem;
+    display: flex;
+    justify-content: space-between;
 }
 
-#product-details-sample-img {
-    border: lightgray solid 1px;
-    border-radius: 0.3rem;
-    grid-area: 2 / 1 / 6 / 2;
+/* three cubes in 1st container & image */
+.details-wine-img,
+.details-wine-info-cube,
+.details-function-cube {
+    margin-top: 5rem;
+    padding: 0;
+    height: 35rem;
 }
 
-#product-details-name {
-    grid-area: 2 / 2 / 3 / 5;
+.details-wine-img {
+    border: indianred solid 1px;
+    margin-left: 7rem;
 }
 
-#product-details-description {
-    grid-area: 3 / 2 / 4 / 5;
+.details-wine-info-cube {
+    border: rebeccapurple solid 1px;
+    width: 38%;
 }
 
-#product-details-price {
-    grid-area: 4 / 2 / 5 / 5;
+.details-function-cube {
+    border: chocolate solid 1px;
+    margin-right: 7rem;
+    width: 30%;
 }
+
+/* -- rows in wine info */
+.wine-info-row.details-wine-info-row {
+    margin-bottom: 1rem;
+}
+
+.wine-info-row.details-rating-row {
+    border: plum solid 1px;
+    margin-top: 4rem;
+
+}
+
 
 #product-details-price-add-to-cart-button {
     background-color: var(--main-theme-color);
@@ -45,5 +71,21 @@
     background-color: var(--second-theme-color);
     transform: var(--button-action);
 }
+
+
+/* 2nd container */
+#product-details-2nd-container {
+    border: lightcoral solid 1px;
+
+}
+
+
+/* 2nd container */
+#product-details-3rd-container {
+    border: chocolate solid 1px;
+
+}
+
+
 
 

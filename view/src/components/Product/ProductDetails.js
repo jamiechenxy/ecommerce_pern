@@ -5,8 +5,7 @@ import { selectProductDetails } from "../../features/productSlice";
 import { selectLoginStatus, selectUser } from "../../features/sessionSlice";
 import { handleAddItemToCart } from "../../features/cartSlice";
 import "../../stylesheets/ProductDetails.css";
-import familyWineryImg from '../../img/family-winery.png';
-import wine1Img from '../../img/wine1.png';
+import WineStarRating from "../Card/WineStarRating";
 
 
 const ProductDetails = () => {
@@ -41,19 +40,61 @@ const ProductDetails = () => {
         }, 1000);
     };
 
+    // const displayGrapes = () => {
+    //     const { grapes } = product;
+    //     const grapesArr = 
+    // };
+
 
     return (
-        <div id="product-details-container">
+        <div id="product-details-main-container">
 
-            <h2 id="product-details-title">{product.name}</h2>
+            <div id="product-details-1st-container">
+                <img className={`details-wine-img`}
+                    src={`/wineImg/${product.picture}.png`}
+                    alt={`${product.picture} sample picture`} 
+                />
+
+                <ul className="details-wine-info-cube">
+                    <li className="wine-info-row details-wine-info-row">
+                        <h4 className="wine-info-winery">
+                            {product.winery}
+                        </h4>
+                    </li>
+                    <li className="wine-info-row details-wine-info-row">
+                        <h4 className="wine-info-grapes-vintage">
+                            {product.grapes.length>2?'Blend':product.grapes.join(', ')} {product.vintage}
+                        </h4>
+                    </li>
+                    <li className="wine-info-row details-wine-info-row">
+                        <h4 className="wine-info-region">
+                            {product.country} · {product.region} · {product.winery} · {`${product.type} Wine`} · {product.grapes.length>2?'Blend':product.grapes.join(' · ')}
+                        </h4>
+                    </li>
+
+                    <li className="wine-info-row details-rating-row">
+                        <WineStarRating rating={product.rating} />
+                    </li>
+                </ul>
                 
-            <img id="product-details-sample-img" src={wine1Img} alt="sample-img" />
+                <ul className="details-function-cube">
 
-            <h4 id="product-details-name">{product.name}</h4>
+                </ul>
 
-            <h4 id="product-details-description">{product.description}</h4>
-            
-            <h4 id="product-details-price">${product.price}</h4>
+
+            </div>
+
+
+            <div id="product-details-2nd-container">
+
+            </div>
+
+
+            <div id="product-details-3rd-container">
+
+            </div>      
+
+
             
             <button id="product-details-price-add-to-cart-button"
                 onClick={handleClickAddingToCartButton}
