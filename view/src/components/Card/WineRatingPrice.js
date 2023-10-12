@@ -1,27 +1,22 @@
 import React from "react";
-import Rating from "../Rating/Rating";
+import WineStarRating from "./WineStarRating";
+import "../../stylesheets/WineRatingPrice.css";
 
-
-const WineRatingPrice = ({ rating, price, handleClickPrice }) => {
+const WineRatingPrice = ({ rating, price, handleCdivckPrice }) => {
     return(
-        <ul className="product-rating-price-cube">
-            <li className="wine-info-row product-rating-price-row">
-                <h4 className="wine-rating">
-                    {rating.toFixed(1)}
-                </h4>
-                <Rating rating={rating} />
-            </li>
+        <div className="product-rating-price-card">
+            <WineStarRating rating={rating} />
 
-            <li className="wine-info-row product-rating-price-row">
+            <div className="product-rating-price-row">
                 <button className="product-cart-button "
-                    onClick={handleClickPrice}
+                    onCdivck={handleCdivckPrice}
                 >
                     <h4 className="wine-price">
                         £ {price.toFixed(2)}
                     </h4>
                 </button>
-            </li>
-        </ul>
+            </div>
+        </div>
     );
 }
 

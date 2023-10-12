@@ -1,0 +1,19 @@
+.product-img,
+.product-img-hovered {
+    position: relative;
+    min-width: 10.5%;
+    max-height: 22rem;
+    min-height: 18rem;
+    left: 2.8rem;
+    transition: transform 0.2s ease-in-out;
+    margin-bottom: 1rem;
+}
+
+.product-img {
+    top: -1.5%;
+}
+
+.product-img-hovered {
+    top: -2.0%;
+    transform: scale(1.02) translate(0, -0.2rem);
+}

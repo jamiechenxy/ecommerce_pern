@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectProductDetails } from "../../features/productSlice";
@@ -6,12 +6,18 @@ import { selectLoginStatus, selectUser } from "../../features/sessionSlice";
 import { handleAddItemToCart } from "../../features/cartSlice";
 import "../../stylesheets/ProductDetails.css";
 import WineStarRating from "../Card/WineStarRating";
+import { CiBookmarkPlus, CiBookmarkMinus } from "react-icons/ci";
+import { HiPlusSm, HiMinusSm,  } from 'react-icons/hi';
 
 
 const ProductDetails = () => {
     const loginStatus = useSelector(selectLoginStatus);
     const product = useSelector(selectProductDetails);
     const navigate = useNavigate();
+    const [ num, setNum ] = useState(1);
+
+    const increment = () => { setNum(preNum => preNum + 1) };
+    const decrement = () => {setNum(preNum => preNum===1 ? 1 : preNum - 1)};
 
     const handleClickAddingToCartButton = () => {
         if (loginStatus) {
@@ -40,46 +46,74 @@ const ProductDetails = () => {
         }, 1000);
     };
 
-    // const displayGrapes = () => {
-    //     const { grapes } = product;
-    //     const grapesArr = 
-    // };
-
-
     return (
         <div id="product-details-main-container">
 
             <div id="product-details-1st-container">
-                <img className={`details-wine-img`}
+                <img id="details-wine-img"
                     src={`/wineImg/${product.picture}.png`}
                     alt={`${product.picture} sample picture`} 
                 />
 
-                <ul className="details-wine-info-cube">
-                    <li className="wine-info-row details-wine-info-row">
+                <div id="details-wine-info-cube">
+                    <div className="wine-info-row details-wine-info-row">
                         <h4 className="wine-info-winery">
                             {product.winery}
                         </h4>
-                    </li>
-                    <li className="wine-info-row details-wine-info-row">
+                    </div>
+                    <div className="wine-info-row details-wine-info-row">
                         <h4 className="wine-info-grapes-vintage">
                             {product.grapes.length>2?'Blend':product.grapes.join(', ')} {product.vintage}
                         </h4>
-                    </li>
-                    <li className="wine-info-row details-wine-info-row">
+                    </div>
+                    <div className="wine-info-row details-wine-info-row">
                         <h4 className="wine-info-region">
                             {product.country} · {product.region} · {product.winery} · {`${product.type} Wine`} · {product.grapes.length>2?'Blend':product.grapes.join(' · ')}
                         </h4>
-                    </li>
+                    </div>
 
-                    <li className="wine-info-row details-rating-row">
-                        <WineStarRating rating={product.rating} />
-                    </li>
-                </ul>
+                    <div className="details-rating-row">
+                    <div id="details-rating-cube">
+                            <WineStarRating rating={product.rating} />
+                        </div>
+                    </div>
+                    <div id="details-wishlist">
+                        <CiBookmarkPlus id="add-to-wishlist-icon"/>
+                        <h4 id="details-wishlist-text">
+                            Add to Wishlist
+                        </h4>
+                    </div>
+                </div>
                 
-                <ul className="details-function-cube">
+                <div id="details-function-cube">
+                    <div id="details-price-row">
+                        <h2>£ {product.price.toFixed(2)}</h2>
+                        <h6> The price is per bottle</h6>
+                    </div>
+                    
+                    <div id="details-add-to-cart-row">
+                        <div id="details-quantity-info">
+                            <HiMinusSm className="details-modify-quan-icon"
+                                onClick={decrement}
+                            />
+                            <h4 id="details-quantity">
+                                {num}
+                            </h4>
+                            <HiPlusSm className="details-modify-quan-icon"
+                                onClick={increment} 
+                            />
+                        </div>
+                        <button id="details-add-to-cart-button"
+                            onClick={handleClickAddingToCartButton}
+                        >
+                            <h3>Add To Cart</h3>
+                        </button>
+                    </div>
 
-                </ul>
+
+
+
+                </div>
 
 
             </div>
@@ -93,14 +127,6 @@ const ProductDetails = () => {
             <div id="product-details-3rd-container">
 
             </div>      
-
-
-            
-            <button id="product-details-price-add-to-cart-button"
-                onClick={handleClickAddingToCartButton}
-            >
-                <h3>Add To Cart</h3>
-            </button>
             
         </div>
     )

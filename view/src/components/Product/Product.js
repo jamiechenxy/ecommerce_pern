@@ -24,19 +24,23 @@ const Product = ({ product, index, dispatch }) => {
         >
             <WineImg hovered={hovered} picture={product.picture} />
             <div className="product-box">
-                <WineInfo 
-                    winery={product.winery}
-                    grapes={product.grapes}
-                    vintage={product.vintage}
-                    country_code={product.country_code}
-                    region={product.region}
-                    country={product.country}
-                />
-                <WineRatingPrice 
-                    rating={product.rating}
-                    price={product.price}
-                    handleClickPrice={handleClickPrice}
-                />
+                <div className="wine-info-cube">
+                    <WineInfo 
+                        winery={product.winery}
+                        grapes={product.grapes}
+                        vintage={product.vintage}
+                        country_code={product.country_code}
+                        region={product.region}
+                        country={product.country}
+                    />
+                </div>
+                <div className="product-rating-price-cube">
+                    <WineRatingPrice 
+                        rating={product.rating}
+                        price={product.price}
+                        handleClickPrice={handleClickPrice}
+                    />
+                </div>
             </div>
         </Link>
     );

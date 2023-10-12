@@ -6,10 +6,10 @@ import {
     selectProductIsLoading, 
     selectProductList, 
 } from "../../features/productSlice";
-import "../../stylesheets/ProductList.css";
 import TextLineLoading from "../../loading/TextLineLoading";
 import ProductListLoading from "../../loading/ProductListLoading";
 import Product from "./Product";
+import "../../stylesheets/Products.css";
 import "../../stylesheets/ProductListLoading.css";
 
 
