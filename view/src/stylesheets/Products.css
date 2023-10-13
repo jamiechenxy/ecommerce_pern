@@ -67,14 +67,14 @@
 
 /* -- -- product wine info */
 .wine-info-cube {
-    border: black solid 1px;
+    /* border: black solid 1px; */
     width: 65%;
     padding: 1rem 0;
 }
 
 /* -- -- product rating price */
 .product-rating-price-cube {
-    border: navajowhite solid 1px;
+    /* border: navajowhite solid 1px; */
     width: 35%;
     display: flex;
     align-items: center;

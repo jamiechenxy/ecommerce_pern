@@ -16,7 +16,7 @@
 #product-details-1st-container {
     background-color: rgb(253, 252, 244);
     /* border: fuchsia solid 1px; */
-    height: 50rem;
+    height: 45rem;
     display: flex;
     justify-content: space-between;
 }
@@ -154,15 +154,91 @@
     transform: var(--button-action);
 }
 
+/* -- etd */
+#etd-row {
+    /* border: rosybrown solid 1px; */
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 0.8rem;
+}
+
+#delivery-icon {
+    font-size: 1.5rem;
+}
+
+#etd-row p{
+    padding: 0;
+    margin: 0 0.8rem;
+}
 
 /* 2nd container */
 #product-details-2nd-container {
     border: lightcoral solid 1px;
+    height: 40rem;
 
 }
 
+#details-tasting-container,
+#details-aroma-container {
+    margin: 5rem 7rem;
+}
 
-/* 2nd container */
+#tasting-feature-box {
+    /* border: green solid 1px; */
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.tasting-feature-cube {
+    /* border: indianred solid 1px; */
+    display: flex;
+    /* flex-direction: row; */
+    /* justify-content: center; */
+    align-items: center;
+    height: 2.5rem;
+}
+
+.tasting-feature-cube h5,
+.tasting-feature h6 {
+    /* border: magenta solid 1px; */
+    margin: 0;
+}
+
+.tasting-feature-cube h5 {
+    /* border: olivedrab solid 1px; */
+    font-size: 1.1rem;
+    font-weight: 500;
+    width: 10rem;
+}
+
+.tasting-feature {
+    /* border: greenyellow solid 1px; */
+    display: flex;
+    margin-left: 5rem;
+    align-items: center;
+    width: 46rem;
+    justify-content: space-between;
+}
+
+.tasting-feature h6 {
+    /* border: violet solid 1px; */
+    font-weight: 400;
+    font-size: 0.85rem;
+    /* margin: 0 1rem; */
+    width: 5%;
+    /* text-align: center; */
+}
+
+.tasting-feature h6:first-child {
+    /* text-align: center; */
+}
+
+.tasting-feature h6:last-child {
+    margin-left: 0.5rem;
+}
+
+/* 3nd container */
 #product-details-3rd-container {
     border: chocolate solid 1px;
 

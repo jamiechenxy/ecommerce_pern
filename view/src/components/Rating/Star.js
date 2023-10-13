@@ -9,7 +9,7 @@ const Star = ({fill}) => {
         >
             <defs>
                 <linearGradient id={`rating-icon-gradient-${fill}`}>
-                    <stop offset={`${fill}%`} stopColor="darkred" />
+                    <stop offset={`${fill}%`} stopColor="crimson" />
                     <stop offset={`${fill}%`} stopColor="#e0e0e0" />
                 </linearGradient>
             </defs>

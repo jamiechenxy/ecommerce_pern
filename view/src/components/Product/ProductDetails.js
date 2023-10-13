@@ -6,8 +6,10 @@ import { selectLoginStatus, selectUser } from "../../features/sessionSlice";
 import { handleAddItemToCart } from "../../features/cartSlice";
 import "../../stylesheets/ProductDetails.css";
 import WineStarRating from "../Card/WineStarRating";
-import { CiBookmarkPlus, CiBookmarkMinus } from "react-icons/ci";
-import { HiPlusSm, HiMinusSm,  } from 'react-icons/hi';
+import { CiBookmarkPlus, CiBookmarkMinus, CiDeliveryTruck } from "react-icons/ci";
+import { HiPlusSm, HiMinusSm, } from 'react-icons/hi';
+import { estimateArrival } from "../../utils/estimateArrival";
+import TastingFeature from "../Card/TastingFeature";
 
 
 const ProductDetails = () => {
@@ -15,6 +17,7 @@ const ProductDetails = () => {
     const product = useSelector(selectProductDetails);
     const navigate = useNavigate();
     const [ num, setNum ] = useState(1);
+    const eta = estimateArrival(2);
 
     const increment = () => { setNum(preNum => preNum + 1) };
     const decrement = () => {setNum(preNum => preNum===1 ? 1 : preNum - 1)};
@@ -106,20 +109,68 @@ const ProductDetails = () => {
                         <button id="details-add-to-cart-button"
                             onClick={handleClickAddingToCartButton}
                         >
-                            <h3>Add To Cart</h3>
+                            <h3>Add to Cart</h3>
                         </button>
                     </div>
 
+                    <div id="etd-row">
+                        <CiDeliveryTruck id="delivery-icon"/>
+                        <p>Estimated date of reception from {eta[0][0]}, {eta[0][1]} {eta[0][2]} to {eta[1][0]}, {eta[1][1]} {eta[1][2]}.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="product-details-2nd-container">
+                <div id="details-tasting-container">
+                    <h2>Tasting of the wine</h2>
+
+                    <div id="tasting-feature-box">
+
+                        <div className="tasting-feature-cube">
+                            <h5>Body</h5>
+                            <div className="tasting-feature">
+                                <h6>Light</h6>
+                                <TastingFeature taste={product.body} />
+                                <h6>Full</h6>
+                            </div>
+                        </div>
+
+                        <div className="tasting-feature-cube">
+                            <h5>Sweetness</h5>
+                            <div className="tasting-feature">
+                                <h6>Dry</h6>
+                                <TastingFeature taste={product.sweetness} />
+                                <h6>Luscious</h6>
+                            </div>
+                        </div>
+
+                        <div className="tasting-feature-cube">
+                            <h5>Tannin</h5>
+                            <div className="tasting-feature">
+                                <h6>Low</h6>
+                                <TastingFeature taste={product.tannin} />
+                                <h6>High</h6>
+                            </div>
+                        </div>
 
 
+                        <div className="tasting-feature-cube">
+                            <h5>Acidity</h5>
+                            <div className="tasting-feature">
+                                <h6>Low</h6>
+                                <TastingFeature taste={product.acidity} />
+                                <h6>High</h6>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="details-aroma-container">
+                    
 
                 </div>
 
-
-            </div>
-
-
-            <div id="product-details-2nd-container">
 
             </div>
 
