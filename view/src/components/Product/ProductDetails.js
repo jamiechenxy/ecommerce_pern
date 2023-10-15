@@ -7,9 +7,14 @@ import { handleAddItemToCart } from "../../features/cartSlice";
 import "../../stylesheets/ProductDetails.css";
 import WineStarRating from "../Card/WineStarRating";
 import { CiBookmarkPlus, CiBookmarkMinus, CiDeliveryTruck } from "react-icons/ci";
-import { HiPlusSm, HiMinusSm, } from 'react-icons/hi';
+import { HiPlusSm, HiMinusSm, HiOutlineInformationCircle } from 'react-icons/hi';
+import { PiCastleTurretLight } from 'react-icons/pi';
+import { GiGrapes, GiWineBottle } from 'react-icons/gi';
+import { SlLocationPin } from "react-icons/sl";
 import { estimateArrival } from "../../utils/estimateArrival";
+import { RiWaterPercentLine } from 'react-icons/ri';
 import TastingFeature from "../Card/TastingFeature";
+import AromaCube from "../Card/AromaCube";
 
 
 const ProductDetails = () => {
@@ -18,6 +23,7 @@ const ProductDetails = () => {
     const navigate = useNavigate();
     const [ num, setNum ] = useState(1);
     const eta = estimateArrival(2);
+    const aromaArr = product.aroma.split(',');
 
     const increment = () => { setNum(preNum => preNum + 1) };
     const decrement = () => {setNum(preNum => preNum===1 ? 1 : preNum - 1)};
@@ -163,22 +169,78 @@ const ProductDetails = () => {
                             </div>
                         </div>
 
+                        <div className="tasting-feature-cube details-aroma-container">
+                            <h5>Aroma</h5>
+                            <div id="details-aroma-box">
+                            {
+                                aromaArr && aromaArr.map((aromaElement, index) => (
+                                    <AromaCube 
+                                        aromaElement={aromaElement}
+                                        index={index}
+                                        key={index}
+                                    />
+                                ))
+                            }
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div id="details-aroma-container">
-                    
-
-                </div>
-
-
             </div>
 
-
             <div id="product-details-3rd-container">
+                <div id="details-facts-container">
+                    <h2>Facts about the wine</h2>
+                    <div id="facts-info-box">
+                        <div className="facts-info-row">
+                            <div className="facts-info-row-title">
+                                <PiCastleTurretLight className="facts-info-icon"/>
+                                <h6>Winery</h6>
+                            </div>
+                            <p className="facts-info-row-content">{product.winery}</p>
+                        </div>
 
+                        <div className="facts-info-row">
+                            <div className="facts-info-row-title">
+                                <GiGrapes className="facts-info-icon"/>
+                                <h6>Grapes</h6>
+                            </div>
+                            <p className="facts-info-row-content">{product.grapes.join(', ')}</p>
+                        </div>
+
+                        <div className="facts-info-row">
+                            <div className="facts-info-row-title">
+                                <SlLocationPin className="facts-info-icon"/>
+                                <h6>Region</h6>
+                            </div>
+                            <p className="facts-info-row-content">{product.country}, {product.region}</p>
+                        </div>
+
+                        <div className="facts-info-row">
+                            <div className="facts-info-row-title">
+                                <GiWineBottle className="facts-info-icon"/>
+                                <h6>Wine style</h6>
+                            </div>
+                            <p className="facts-info-row-content">{product.type} wine</p>
+                        </div>
+
+                        <div className="facts-info-row">
+                            <div className="facts-info-row-title">
+                                <HiOutlineInformationCircle className="facts-info-icon"/>
+                                <h6>Allergens</h6>
+                            </div>
+                            <p className="facts-info-row-content">Contains sulfites</p>
+                        </div>
+
+                        <div className="facts-info-row">
+                            <div className="facts-info-row-title">
+                                <RiWaterPercentLine className="facts-info-icon"/>
+                                <h6>Alcohol by volumn</h6>
+                            </div>
+                            <p className="facts-info-row-content">{product.alcohol}%</p>
+                        </div>
+                    </div>
+                </div>
             </div>      
-            
         </div>
     )
 };

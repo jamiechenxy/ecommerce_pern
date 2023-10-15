@@ -6,9 +6,10 @@ const TastingFeature = ({ taste }) => {
     return (
         <div className="tasting-feature-bar">
             {
-                [...Array(7)].map((_, index) => {
-                        return <TastingFeatureFill taste={taste} index={index} key={index}/>
-                })
+                [...Array(7)].map((_, index) => (
+                    <TastingFeatureFill taste={taste} index={index} key={index}/>
+                )
+                )
             }
         </div>
     );

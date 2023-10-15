@@ -4,14 +4,6 @@
     flex-direction: column;
 }
 
-/* make all sub containers the same margin */
-/* #product-details-1st-container,
-#product-details-2nd-container,
-#product-details-3rd-container {
-    margin: 0 7rem;
-    
-} */
-
 /* 1st container */
 #product-details-1st-container {
     background-color: rgb(253, 252, 244);
@@ -173,19 +165,19 @@
 
 /* 2nd container */
 #product-details-2nd-container {
-    border: lightcoral solid 1px;
+    /* border: lightcoral solid 1px; */
     height: 40rem;
 
 }
 
-#details-tasting-container,
-#details-aroma-container {
-    margin: 5rem 7rem;
+#details-tasting-container {
+    margin: 5rem 7rem 0 7rem;
 }
 
+/* feature */
 #tasting-feature-box {
     /* border: green solid 1px; */
-    height: 20rem;
+    height: 11rem;
     display: flex;
     flex-direction: column;
 }
@@ -193,10 +185,9 @@
 .tasting-feature-cube {
     /* border: indianred solid 1px; */
     display: flex;
-    /* flex-direction: row; */
-    /* justify-content: center; */
     align-items: center;
     height: 2.5rem;
+    margin: 0.5rem 0;
 }
 
 .tasting-feature-cube h5,
@@ -225,25 +216,116 @@
     /* border: violet solid 1px; */
     font-weight: 400;
     font-size: 0.85rem;
-    /* margin: 0 1rem; */
     width: 5%;
-    /* text-align: center; */
-}
-
-.tasting-feature h6:first-child {
-    /* text-align: center; */
 }
 
 .tasting-feature h6:last-child {
     margin-left: 0.5rem;
 }
 
-/* 3nd container */
-#product-details-3rd-container {
-    border: chocolate solid 1px;
+/* aroma */
+.tasting-feature-cube.details-aroma-container {
+    /* border: aquamarine solid 1px; */
+    height: 20rem;
+    display: flex;
+    align-items: start;
+    padding-top: 0.8rem;
+}
 
+#details-aroma-box {
+    /* border: indianred solid 1px; */
+    height: 20rem;
+    width: 52rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    margin-left: 4.3rem;
+}
+
+.aroma-cube {
+    /* border: aqua solid 1px; */
+    width: 5.5rem;
+    height: 5.2rem;
+    margin: 0 3rem 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.aroma-img,
+.aroma-cube h6 {
+    margin: 0 auto;
+}
+
+.aroma-img {
+    /* border: red solid 1px; */
+    width: 3.4rem;
+}
+
+.aroma-cube h6 {
+    /* border: darkcyan solid 1px; */
+    font-size: 0.9rem;
+    font-weight: 400;
 }
 
 
+/* 3nd container */
+#product-details-3rd-container,
+#details-facts-container {
+    /* border: chocolate solid 1px; */
+    height: 30rem;
+}
 
+#details-facts-container {
+    /* border: darkblue solid 1px; */
+    margin: 0 7rem 0 7rem;
+}
+
+#facts-info-box {
+    /* border: aqua solid 1px; */
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.facts-info-row {
+    /* border: red solid 1px; */
+    border-bottom: lightgrey solid 1px;
+    width: 100%;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+
+}
+
+.facts-info-row h6,
+.facts-info-icon,
+.facts-info-row-content {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.facts-info-row-title {
+    /* border: green solid 1px; */
+    width: 30%;
+    display: flex;
+    align-items: center;
+}
+
+.facts-info-icon {
+    font-size: 1.3rem;
+    color: darkgray
+}
+
+.facts-info-row h6 {
+    margin: 0 0 0 0.8rem;
+    padding: 0;
+}
+
+.facts-info-row-content {
+    /* border: green solid 1px; */
+    width: 70%;
+
+}
 
