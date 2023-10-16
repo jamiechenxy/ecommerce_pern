@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { 
+    loadFilter,
     loadProductList, 
+    selectFilter, 
+    selectFilterHasError, 
+    selectFilterIsLoading, 
     selectProductHasError, 
     selectProductIsLoading, 
     selectProductList, 
@@ -11,22 +15,26 @@ import ProductListLoading from "../../loading/ProductListLoading";
 import Product from "./Product";
 import "../../stylesheets/Products.css";
 import "../../stylesheets/ProductListLoading.css";
+import FilterType from "./FilterType";
 
 
 const Products = () => {
-    const productsArray = useSelector(selectProductList);
+    const products = useSelector(selectProductList);
     const productIsLoading = useSelector(selectProductIsLoading);
     const productHasError = useSelector(selectProductHasError);
-
+    const filter = useSelector(selectFilter);
+    const filterIsLoading = useSelector(selectFilterIsLoading);
+    const filterHasError = useSelector(selectFilterHasError);
     const dispatch = useDispatch();
 
     useEffect(() => {
         setTimeout(() => {
+            dispatch(loadFilter());
             dispatch(loadProductList());  
         }, 500);
     }, []);
 
-    if (productIsLoading && productsArray.length===0) {
+    if (productIsLoading && products.length===0) {
         return (
             <div id="products-body-container">
                 <TextLineLoading lines={1} />
@@ -43,16 +51,26 @@ const Products = () => {
                 Finest Selections For Delightful Living!
             </h2>
             <div id="products-main-container">
+
                 <div id="products-filters-container">
-                    <div id="products-filters-wine-types-container">
-                        <h2>Wine Types</h2>
+                    <FilterType wineTypes={filter.wineTypes}/>
+                    
+                    <div className="products-filters-box" id="filters-price-range-box">
+                        <div className="products-filters-box-title">
+                            <h3>Price Range</h3>
+                            <h6>GBP</h6>
+                        </div>
+                        <div className="products-filters-box-content">
+
+                        </div>
                     </div>
+                    
 
                 </div>
             
                 <div id="products-product-list-container">
                     {
-                        productsArray && productsArray.map((product, index) => (
+                        products && products.map((product, index) => (
                             <Product 
                                 product={product}
                                 index={index}

@@ -1,5 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getProductDetails, getProducts } from "../utils/product";
+import { 
+    getFilter, 
+    getProductDetails, 
+    getProducts, 
+} from "../utils/product";
+
+
+export const loadFilter = createAsyncThunk(
+    "product/loadFilter",
+    async() => {
+        const response = await getFilter();
+        // console.log('filter response:', response);
+        return response;
+    }
+);
 
 export const loadProductList = createAsyncThunk(
     "product/loadProducts",
@@ -8,12 +22,12 @@ export const loadProductList = createAsyncThunk(
 
         response.forEach(obj => {
             obj.grapes = obj.grapes.split(',').map(ele => ele.trim());
+            obj.aroma = obj.aroma.split(',').map(ele => ele.trim());
         });
 
         return response;
     }
 );
-
 
 const productSlice = createSlice({
     name: 'product',
@@ -22,6 +36,9 @@ const productSlice = createSlice({
         isLoading: true,
         hasError: false,
         viewDetails: 'none',
+        filter: {},
+        isLoadingFilter: true,
+        hasErrorWithFilter: false,
     },
     reducers: {
         setViewDetails: (state, action) => {
@@ -43,6 +60,19 @@ const productSlice = createSlice({
             state.isLoading = false;
             state.hasError = true;
         })
+        .addCase(loadFilter.pending, (state) => {
+            state.isLoadingFilter = true;
+            state.hasErrorWithFilter = false;
+        })
+        .addCase(loadFilter.fulfilled, (state, action) => {
+            state.isLoadingFilter = false;
+            state.hasErrorWithFilter = false;
+            state.filter = action.payload;
+        })
+        .addCase(loadFilter.rejected, (state) => {
+            state.isLoadingFilter = false;
+            state.hasErrorWithFilter = true;
+        })
     }
 });
 
@@ -56,6 +86,12 @@ export const selectProductIsLoading = state => state.product.isLoading;
 export const selectProductHasError = state => state.product.hasError;
 
 export const selectViewDetails = state => state.product.viewDetails;
+
+export const selectFilter = state => state.product.filter;
+
+export const selectFilterIsLoading = state => state.product.isLoadingFilter;
+
+export const selectFilterHasError = state => state.product.hasErrorWithFilter;
 
 export const { setViewDetails } = productSlice.actions;
 

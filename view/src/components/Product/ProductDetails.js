@@ -23,7 +23,7 @@ const ProductDetails = () => {
     const navigate = useNavigate();
     const [ num, setNum ] = useState(1);
     const eta = estimateArrival(2);
-    const aromaArr = product.aroma.split(',');
+    // const aromaArr = product.aroma.split(',');
 
     const increment = () => { setNum(preNum => preNum + 1) };
     const decrement = () => {setNum(preNum => preNum===1 ? 1 : preNum - 1)};
@@ -150,14 +150,20 @@ const ProductDetails = () => {
                             </div>
                         </div>
 
-                        <div className="tasting-feature-cube">
-                            <h5>Tannin</h5>
-                            <div className="tasting-feature">
-                                <h6>Low</h6>
-                                <TastingFeature taste={product.tannin} />
-                                <h6>High</h6>
+                        {
+                            product.type==='Red' 
+                            ? 
+                            <div className="tasting-feature-cube">
+                                <h5>Tannin</h5>
+                                <div className="tasting-feature">
+                                    <h6>Low</h6>
+                                    <TastingFeature taste={product.tannin} />
+                                    <h6>High</h6>
+                                </div>
                             </div>
-                        </div>
+                            :
+                            ''
+                        }
 
 
                         <div className="tasting-feature-cube">
@@ -173,7 +179,7 @@ const ProductDetails = () => {
                             <h5>Aroma</h5>
                             <div id="details-aroma-box">
                             {
-                                aromaArr && aromaArr.map((aromaElement, index) => (
+                                product.aroma && product.aroma.map((aromaElement, index) => (
                                     <AromaCube 
                                         aromaElement={aromaElement}
                                         index={index}

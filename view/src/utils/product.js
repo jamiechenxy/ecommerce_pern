@@ -23,7 +23,8 @@ export const getProductDetails = async (productId) => {
         const res = await fetch(`${api_endpoint}/product/${productId}`, {
             headers: {
                 'Content-type': 'application/json',
-            }
+            },
+            credentials: 'include',
         });
 
         const response = await res.json();
@@ -35,4 +36,20 @@ export const getProductDetails = async (productId) => {
     }
 };
 
+export const getFilter = async() => {
+    try {
+        const res = await fetch(`${api_endpoint}/feature`, {
+            headers: {
+                'Content-type': 'application/json',
+            },
+            credentials: "include",
+        });
 
+        const response = await res.json();
+
+        return response;
+
+    } catch (error) {
+        return { error };
+    }
+};
