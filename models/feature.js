@@ -28,7 +28,7 @@ const getWinePriceRange = async() => {
 const getGrapes = async() => {
     try {
         const textHead = "WITH v AS (SELECT product_id, UNNEST(STRING_TO_ARRAY(grapes, ',')) as grape FROM product) ";
-        const textTail = "SELECT v.grape, COUNT(v.grape) as num FROM v GROUP BY 1 ORDER BY 2 DESC LIMIT 10";
+        const textTail = "SELECT v.grape, COUNT(v.grape) as num FROM v GROUP BY 1 ORDER BY 2 DESC";
         const text = textHead + textTail;
 
         const result = await db.executeQuery(text);

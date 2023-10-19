@@ -16,6 +16,9 @@ import Product from "./Product";
 import "../../stylesheets/Products.css";
 import "../../stylesheets/ProductListLoading.css";
 import FilterType from "./FilterType";
+import FilterSlider from "./FilterSlider";
+import FilterRating from "./FilterRating";
+import FilterGrape from "./FilterGrape";
 
 
 const Products = () => {
@@ -23,6 +26,7 @@ const Products = () => {
     const productIsLoading = useSelector(selectProductIsLoading);
     const productHasError = useSelector(selectProductHasError);
     const filter = useSelector(selectFilter);
+    console.log('filter:', filter);
     const filterIsLoading = useSelector(selectFilterIsLoading);
     const filterHasError = useSelector(selectFilterHasError);
     const dispatch = useDispatch();
@@ -34,7 +38,7 @@ const Products = () => {
         }, 500);
     }, []);
 
-    if (productIsLoading && products.length===0) {
+    if (productIsLoading && filterIsLoading && products.length===0) {
         return (
             <div id="products-body-container">
                 <TextLineLoading lines={1} />
@@ -53,18 +57,10 @@ const Products = () => {
             <div id="products-main-container">
 
                 <div id="products-filters-container">
-                    <FilterType wineTypes={filter.wineTypes}/>
-                    
-                    <div className="products-filters-box" id="filters-price-range-box">
-                        <div className="products-filters-box-title">
-                            <h3>Price Range</h3>
-                            <h6>GBP</h6>
-                        </div>
-                        <div className="products-filters-box-content">
-
-                        </div>
-                    </div>
-                    
+                    {filter.wineTypes && <FilterType wineTypes={filter.wineTypes}/>}
+                    <FilterSlider />
+                    <FilterRating />
+                    {filter.grapes && <FilterGrape grapes={filter.grapes}/>}
 
                 </div>
             

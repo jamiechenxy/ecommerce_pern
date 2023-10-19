@@ -47,7 +47,7 @@ featureRouter.get('/', async (req, res, next) => {
             countries
         };
         
-        console.log(featureObj);
+        // console.log(featureObj);
 
         res.status(200).json(featureObj);
 

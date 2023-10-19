@@ -1,10 +1,10 @@
 import React from "react";
 
 
-const Star = ({fill}) => {
+const Star = ({fill, height}) => {
 
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" height="1em" 
+        <svg xmlns="http://www.w3.org/2000/svg" height={`${height}`}
             viewBox="0 0 576 512" style={{marginRight: '0.1rem'}}
         >
             <defs>
