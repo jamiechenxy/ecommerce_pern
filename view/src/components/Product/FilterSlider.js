@@ -17,12 +17,12 @@ const FilterSlider = () => {
     };
 
     return (
-        <div className="products-filters-box" id="filters-price-range-box">
-            <div className="products-filters-box-title">
+        <fieldset className="products-filters-box" id="filters-price-range-box">
+            <legend className="products-filters-box-title">
                 <h3>Price Range</h3>
                 <h6>GBP</h6>
-            </div>
-            <div className="products-filters-box-middle">
+            </legend>
+            <div id="products-filters-box-price">
                 <h6>£{priceRange[0]}</h6>
                 <h6>£{priceRange[1]}</h6>
             </div>
@@ -49,7 +49,7 @@ const FilterSlider = () => {
                     // }}
                 />
             </div>
-        </div>
+        </fieldset>
 
     );
 }

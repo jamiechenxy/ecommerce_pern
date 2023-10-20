@@ -22,20 +22,22 @@
 
 /* filters */
 #products-filters-container {
-    border: aquamarine solid 1px;
+    /* border: aquamarine solid 1px; */
     width: 35%;
     display: flex;
     flex-direction: column;
 }
 
 .products-filters-box {
-    border: blue solid 1px;
-    height: 20rem;
-    /* width: 100%; */
+    border: none;
+    /* border: blue solid 1px; */
+    height: fit-content;
+    margin-bottom: 2.9rem;
 }
 
 .products-filters-box-title {
-    border: indianred solid 1px;
+    /* border: indianred solid 1px; */
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -52,25 +54,22 @@
     font-weight: 400;
 }
 
-.products-filters-box-content {
-    border: red solid 1px;
-    /* height: max-content; */
+/* -- -- wine type */
+#products-filters-box-type {
+    /* border: red solid 1px; */
+    height: min-content;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 2rem 0;
-}
-
-/* -- -- wine type */
-.products-filters-box#filters-wine-type-box {
-    height: 9rem;
+    margin-top: 1.5rem;
 }
 
 .filter-wine-type {
-    border: brown solid 0.07rem;
     border-radius: 5rem;
     height: 2rem;
     width: 7.5rem;
+    border: brown solid 0.07rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,14 +83,16 @@
 }
 
 /* -- -- price range */
-.products-filters-box-middle {
-    border: thistle solid 1px;
+#products-filters-box-price {
+    /* border: thistle solid 1px; */
     display: flex;
     align-items: end;
     justify-content: space-between;
+    padding: 0 0.25rem;
+    margin: 1.5rem 0 1rem 0;
 }
 
-.products-filters-box-middle h6 {
+#products-filters-box-price h6 {
     margin: 0;
     font-size: 0.8rem;
     font-weight: 400;
@@ -119,10 +120,10 @@
   }
   
   .filter-slider-track {
-    background-color: #ddd;
     height: 0.25rem;
     border-radius: 3px;
     display: flex;
+    background-color: #ddd;
   }
   
   .filter-slider .filter-slider-track-1 {
@@ -130,12 +131,13 @@
   }  
 
 /* -- -- rating filter */
-#products-filters-box-content-rating {
-    border: green solid 1px;
+#products-filters-box-rating {
+    /* border: green solid 1px; */
     display: flex;
     flex-direction: column;
     height: 8rem;
     justify-content: space-evenly;
+    margin-top: 1rem;
 }
 
 /* -- -- -- custom radio */
@@ -171,14 +173,14 @@
 
 .filter-rating-radio .filter-rating-radio-stars-holder {
     display: inline-block;
-    border: black solid 1px;
+    /* border: black solid 1px; */
     position: relative;
     vertical-align: middle;
     margin-left: 0.5rem;
 }
 
 .filter-rating-radio p {
-    border: black solid 1px;
+    /* border: black solid 1px; */
     margin: 0 0 0 0.5rem;
     font-size: 0.8rem;
     font-weight: 400;
@@ -194,17 +196,62 @@
 }
 
 /* -- grape filter */
+.products-filters-search-box {
+    border-bottom: #ddd solid 0.1rem;
+    margin: 1.5rem 0 1rem 0;
+}
 
+.filter-search-icon {
+    /* border: red solid 1px; */
+    display: inline-block;
+    vertical-align: middle;
+    color: lightgrey;
+    font-size: 1.5rem;
+    /* position: relative; */
+}
 
-.filter-grape {
-    border: gold solid 1px;
+.filter-search-line {
+    border: none;
+    /* border-bottom: #ddd solid 0.1rem; */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.filter-search-line:focus {
+    outline: none;
+    border: none;
+}
+
+.products-filters-box-grape-country {
+    /* border: cadetblue solid 1px; */
+    height: min-content;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filter-grape-country {
+    height: 1.8rem;
+    padding: 0 0.5rem;
+    border: brown solid 0.08rem;
+    border-radius: 2rem;
+    color: brown;
+    display: flex;
+    align-items: center;
+    font-size: 0.85rem;
+    margin: 0.3rem 0.2rem;
+}
+
+/* -- country filter */
+.filter-grape-country span {
+    font-size: 1rem;
 }
 
 
 /* product list */
 #products-product-list-container {
     /* border: darkgoldenrod solid 1px; */
-    width: 65%;
+    width: 63%;
     display: flex;
     flex-direction: column;
     align-items: end;

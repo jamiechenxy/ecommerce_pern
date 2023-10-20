@@ -19,6 +19,8 @@ import FilterType from "./FilterType";
 import FilterSlider from "./FilterSlider";
 import FilterRating from "./FilterRating";
 import FilterGrape from "./FilterGrape";
+import FilterCountry from "./FilterCountry";
+import FilterRegion from "./FilterRegion";
 
 
 const Products = () => {
@@ -26,7 +28,6 @@ const Products = () => {
     const productIsLoading = useSelector(selectProductIsLoading);
     const productHasError = useSelector(selectProductHasError);
     const filter = useSelector(selectFilter);
-    console.log('filter:', filter);
     const filterIsLoading = useSelector(selectFilterIsLoading);
     const filterHasError = useSelector(selectFilterHasError);
     const dispatch = useDispatch();
@@ -61,7 +62,8 @@ const Products = () => {
                     <FilterSlider />
                     <FilterRating />
                     {filter.grapes && <FilterGrape grapes={filter.grapes}/>}
-
+                    {filter.regions && <FilterRegion regions={filter.regions}/>}
+                    {filter.countries && <FilterCountry countries={filter.countries}/>}
                 </div>
             
                 <div id="products-product-list-container">

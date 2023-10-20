@@ -3,7 +3,8 @@ const {
     getWineType, 
     getWinePriceRange, 
     getGrapes, 
-    getCountry 
+    getCountry, 
+    getRegion
 } = require('../models/feature');
 
 
@@ -12,8 +13,8 @@ featureRouter.get('/', async (req, res, next) => {
         const typeRes = await getWineType();
         const priceRangeRes = await getWinePriceRange();
         const grapeRes = await getGrapes();
+        const regionRes = await getRegion();
         const countryRes = await getCountry();
-        // console.log(typeRes, priceRangeRes, grapeRes, countryRes);
 
         if (typeRes.length===0 ) {
             res.status(404);
@@ -30,6 +31,11 @@ featureRouter.get('/', async (req, res, next) => {
             throw new Error('Error during getting grapes.');
         };
 
+        if (regionRes.length===0 ) {
+            res.status(404);
+            throw new Error('Error during getting regions.');
+        };
+
         if (countryRes.length===0 ) {
             res.status(404);
             throw new Error('Error during getting country.');
@@ -38,17 +44,17 @@ featureRouter.get('/', async (req, res, next) => {
         const wineTypes = typeRes.map(obj => obj.type);
         const priceRange = Object.values(priceRangeRes[0]);
         const grapes = grapeRes.map(obj => obj.grape);
-        const countries = countryRes.map(obj => obj.country);
+        const regions = regionRes.map(obj => obj.region);
+        const countries = countryRes.map(obj => Object.values(obj));
 
         const featureObj = {
             wineTypes,
             priceRange,
             grapes,
+            regions,
             countries
         };
         
-        // console.log(featureObj);
-
         res.status(200).json(featureObj);
 
     } catch (error) {

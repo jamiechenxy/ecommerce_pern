@@ -7,7 +7,7 @@ const FilterRating = () => {
             <legend className="products-filters-box-title">
                 <h3>Rating</h3>
             </legend>
-            <div id="products-filters-box-content-rating">
+            <div id="products-filters-box-rating">
 
                 <label className="filter-rating-radio">
                     <input type="radio" name="option" value="1" />

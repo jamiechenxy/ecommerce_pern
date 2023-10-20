@@ -40,9 +40,22 @@ const getGrapes = async() => {
     }
 };
 
+const getRegion = async() => {
+    try {
+        const text = 'SELECT region FROM product GROUP BY 1 ORDER BY 1';
+
+        const result = await db.executeQuery(text);
+
+        return result;
+
+    } catch (error) {
+        throw(error);
+    }
+};
+
 const getCountry = async() => {
     try {
-        const text = 'SELECT country FROM product GROUP BY country';
+        const text = 'SELECT country, country_code FROM product GROUP BY 1, 2';
 
         const result = await db.executeQuery(text);
 
@@ -55,5 +68,5 @@ const getCountry = async() => {
 
 
 module.exports = {
-    getWineType, getWinePriceRange, getGrapes, getCountry
+    getWineType, getWinePriceRange, getGrapes, getRegion, getCountry
 };

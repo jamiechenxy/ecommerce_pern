@@ -1,27 +1,27 @@
 import React, { useState } from "react";
 import { MdSearch } from "react-icons/md";
 
-const FilterGrape = ({ grapes }) => {
+const FilterRegion = ({ regions }) => {
     const [keyword, setKeyword] = useState('');
 
     const handleKeywordChange = (e) => {
         setKeyword(e.currentTarget.value);
     }
 
-    const displayGrapes = () => {
-        if (!keyword && grapes.length > 0) {
-            return grapes.map((grape, index) => (
+    const displayRegions = () => {
+        if (!keyword && regions.length > 0) {
+            return regions.map((region, index) => (
                 index < 10 ? 
                 <div className="filter-grape-country" key={index}>
-                    {grape}
+                    {region}
                 </div>
                 : ''
             ));
-        } else if (keyword && grapes.length > 0) {
-            return grapes.map((grape, index) => (
-                grape.toLowerCase().includes(keyword.toLowerCase()) ? 
+        } else if (keyword && regions.length > 0) {
+            return regions.map((region, index) => (
+                region.toLowerCase().includes(keyword.toLowerCase()) ? 
                 <div className="filter-grape-country" key={index}>
-                    {grape}
+                    {region}
                 </div>
                 : '' 
             ));
@@ -30,33 +30,27 @@ const FilterGrape = ({ grapes }) => {
         }
     };
 
-    // const handleChangeGrapes = (keyword='') => {
-    //     console.log('from handleChangeGrapes, keyword:', keyword);
-    //     if (!keyword) {
-    //         return grapes
-    //     }
-    // };
 
     return (
         <fieldset className="products-filters-box">
             <legend className="products-filters-box-title">
-                <h3>Grapes</h3>
+                <h3>Regions</h3>
             </legend>
             <div className="products-filters-search-box">
                 <MdSearch className="filter-search-icon" />
                 <input 
                     className="filter-search-line" 
                     type="text" 
-                    placeholder="Search grapes" 
+                    placeholder="Search regions" 
                     value={keyword}
                     onChange={handleKeywordChange}
                 />
             </div>
             <div className="products-filters-box-grape-country">
-                {grapes && displayGrapes()}
+                {regions && displayRegions()}
             </div>
         </fieldset>
     );
 }
 
-export default FilterGrape;
+export default FilterRegion;
