@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { MdSearch } from "react-icons/md";
+import { filterActivity } from "../../utils/filterActivity";
+import { useDispatch, useSelector } from "react-redux";
+import { selectConditionGrapes } from "../../features/productSlice";
+import { setConditionGRC } from "../../features/productSlice";
 
 const FilterGrape = ({ grapes }) => {
+    const dispatch = useDispatch();
+    const conditionGrapes = useSelector(selectConditionGrapes);
     const [keyword, setKeyword] = useState('');
 
     const handleKeywordChange = (e) => {
@@ -12,7 +18,10 @@ const FilterGrape = ({ grapes }) => {
         if (!keyword && grapes.length > 0) {
             return grapes.map((grape, index) => (
                 index < 10 ? 
-                <div className="filter-grape-country" key={index}>
+                <div className={`filter-grape-country${filterActivity(grape, conditionGrapes)}`} 
+                    key={index}
+                    onClick={() => dispatch(setConditionGRC({targetedEle: grape, category: "grapes"}))}
+                >
                     {grape}
                 </div>
                 : ''
@@ -20,7 +29,10 @@ const FilterGrape = ({ grapes }) => {
         } else if (keyword && grapes.length > 0) {
             return grapes.map((grape, index) => (
                 grape.toLowerCase().includes(keyword.toLowerCase()) ? 
-                <div className="filter-grape-country" key={index}>
+                <div className={`filter-grape-country${filterActivity(grape, conditionGrapes)}`} 
+                    key={index}
+                    onClick={() => dispatch(setConditionGRC({targetedEle: grape, category: "grapes"}))}
+                >
                     {grape}
                 </div>
                 : '' 
@@ -29,13 +41,6 @@ const FilterGrape = ({ grapes }) => {
             return;
         }
     };
-
-    // const handleChangeGrapes = (keyword='') => {
-    //     console.log('from handleChangeGrapes, keyword:', keyword);
-    //     if (!keyword) {
-    //         return grapes
-    //     }
-    // };
 
     return (
         <fieldset className="products-filters-box">

@@ -16,7 +16,7 @@ import { createNewOrderItem, createOrderStripe } from "../utils/orders";
 
 export const loadCart = createAsyncThunk(
     "cart/loadCart",
-    async (dummy, { getState }) => {
+    async (_, { getState }) => {
         const response = await getCartInfoToDisplay();
 
         if (response.length===0) { return response; };
@@ -63,7 +63,7 @@ export const processToPayment = createAsyncThunk(
 // used to verify and get payment status after stripe webhooks
 export const getPaymentStatus = createAsyncThunk(
     "cart/getPaymentStatus",
-    async(dummy ,{ rejectWithValue, getState }) => {
+    async(_ ,{ rejectWithValue, getState }) => {
 
         const { status } = await getPaymentInfo();
 
@@ -74,7 +74,7 @@ export const getPaymentStatus = createAsyncThunk(
 
 export const processForSuccess = createAsyncThunk(
     "cart/processForSuccess",
-    async(dummy, { rejectWithValue }) => {
+    async(_, { rejectWithValue }) => {
         // get ssId
         const { ssId } = await getPaymentInfo();
         // use ssId as param to create a new order
@@ -106,7 +106,7 @@ export const processForSuccess = createAsyncThunk(
 // handle on backend (to check failure of payment process)
 export const processCarStatus = createAsyncThunk(
     "cart/processCarStatus",
-    async(dummy, { rejectWithValue }) => {
+    async(_, { rejectWithValue }) => {
         // here to handle all process on backend.
         const cartStautsRes = await handleCartStatusProcess();
         

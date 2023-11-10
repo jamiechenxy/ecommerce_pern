@@ -1,8 +1,11 @@
-#text-line-loading-container {
+/* #text-line-loading-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+} */
+
+
+.product-list-loading-box {
+    margin: 0 auto;
 }
-
-

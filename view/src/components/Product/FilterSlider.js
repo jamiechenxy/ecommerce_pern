@@ -1,18 +1,41 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import ReactSlider from "react-slider";
 import { generateSliderMark, transformedMarks } from "../../utils/generateSliderMark";
+import { useDispatch } from "react-redux";
+import { setConditionPrice } from "../../features/productSlice";
 
 
 const FilterSlider = () => {
+    const dispatch = useDispatch();
+    const debounceTimeoutRef = useRef();
     const [priceRange, setPriceRange] = useState([transformedMarks[44], transformedMarks[330]]);
-    // console.log('transformedMarks:', transformedMarks);
     const marksPositions = Object.keys(transformedMarks).map(Number);
     const step = marksPositions[1] - marksPositions[0];
+
+    const debouncedAction = useCallback(() => {
+        if (debounceTimeoutRef.current) {
+            clearTimeout(debounceTimeoutRef.current);
+        }
+
+        debounceTimeoutRef.current = setTimeout(() => {
+            dispatch(setConditionPrice(priceRange));
+        }, 500);
+
+    }, [priceRange, dispatch]);
+
+    useEffect(() => {
+        debouncedAction();
+
+        return () => {
+            if (debounceTimeoutRef.current) {
+                clearTimeout(debounceTimeoutRef.current);
+            }
+        }
+
+    }, [priceRange, debouncedAction]);
     
     const handleChange = (values, thumb) => {
-        // console.log("on change:", values, thumb);
         const newPriceRange = [transformedMarks[values[0]], transformedMarks[values[1]]];
-        // console.log('newPriceRange:', newPriceRange);
         setPriceRange(newPriceRange);
     };
 
@@ -41,12 +64,6 @@ const FilterSlider = () => {
                     onChange={handleChange}
                     step={step}
                     marks={marksPositions}
-                    // withTracks
-                    // renderMark={(props) => {
-                    //     props.style.left = transformedMarks[props.key.toString()];
-                    //     console.log(props);
-                    //     return <span {...props}/>
-                    // }}
                 />
             </div>
         </fieldset>

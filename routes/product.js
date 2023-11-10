@@ -1,13 +1,13 @@
 const productRouter = require('express').Router();
 const {
-    getAllProducts, 
+    getProduct, 
     getProductById,
 } = require('../models/product');
 
 
 productRouter.get('/', async (req, res, next) => {
     try {
-        const result = await getAllProducts();
+        const result = await getProduct(req.query);
 
         if (!result) {
             res.status(404);

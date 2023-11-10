@@ -1,8 +1,8 @@
 const api_endpoint = process.env.REACT_APP_API_ENDPOINT;
 
-export const getProducts = async () => {
+export const getProducts = async (queryString) => {
     try {
-        const res = await fetch(`${api_endpoint}/product`, {
+        const res = await fetch(`${api_endpoint}/product?${queryString}`, {
             headers: {
                 'Content-type': 'application/json',
             },

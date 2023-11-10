@@ -41,18 +41,20 @@ featureRouter.get('/', async (req, res, next) => {
             throw new Error('Error during getting country.');
         };
 
-        const wineTypes = typeRes.map(obj => obj.type);
-        const priceRange = Object.values(priceRangeRes[0]);
+        const type = typeRes.map(obj => obj.type);
+        const price = Object.values(priceRangeRes[0]);
         const grapes = grapeRes.map(obj => obj.grape);
-        const regions = regionRes.map(obj => obj.region);
-        const countries = countryRes.map(obj => Object.values(obj));
+        const region = regionRes.map(obj => obj.region);
+        const country = countryRes.map(obj => obj.country);
+        const countryCode = Object.fromEntries(countryRes.map(obj => Object.values(obj)));
 
         const featureObj = {
-            wineTypes,
-            priceRange,
+            type,
+            price,
             grapes,
-            regions,
-            countries
+            region,
+            country,
+            countryCode,
         };
         
         res.status(200).json(featureObj);

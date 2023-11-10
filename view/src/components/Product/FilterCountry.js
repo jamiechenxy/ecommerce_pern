@@ -1,30 +1,41 @@
 import React, { useState } from "react";
 import { MdSearch } from "react-icons/md";
+import { filterActivity } from "../../utils/filterActivity";
+import { selectConditionCountry } from "../../features/productSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setConditionGRC } from "../../features/productSlice";
 
-
-const FilterCountry = ({ countries }) => {
+const FilterCountry = ({ country, countryCode }) => {
+    const dispatch = useDispatch();
+    const conditionCountry = useSelector(selectConditionCountry);
     const [keyword, setKeyword] = useState('');
 
     const handleKeywordChange = (e) => {
         setKeyword(e.currentTarget.value);
     }
 
-    const displayCountries = () => {
-        if (!keyword && countries.length > 0) {
-            return countries.map((country, index) => (
+    const displayCountry = () => {
+        if (!keyword && country.length > 0) {
+            return country.map((countryEle, index) => (
                 index < 10 ? 
-                <div className="filter-grape-country" key={index}>
-                    <span className={`fi fi-${country[1]} fis`}></span>
-                    {country[0]}
+                <div className={`filter-grape-country${filterActivity(countryEle, conditionCountry)}`} 
+                    key={index}
+                    onClick={() => dispatch(setConditionGRC({targetedEle: countryEle, category:"country"}))}
+                >
+                    <span className={`fi fi-${countryCode[countryEle]} fis`}></span>
+                    {countryEle}
                 </div>
                 : ''
             ));
-        } else if (keyword && countries.length > 0) {
-            return countries.map((country, index) => (
-                country[0].toLowerCase().includes(keyword.toLowerCase()) ? 
-                <div className="filter-grape-country" key={index}>
-                    <span className={`fi fi-${country[1]} fis`}></span>
-                    {country[0]}
+        } else if (keyword && country.length > 0) {
+            return country.map((countryEle, index) => (
+                countryEle.toLowerCase().includes(keyword.toLowerCase()) ? 
+                <div className={`filter-grape-country${filterActivity(countryEle, conditionCountry)}`} 
+                    key={index}
+                    onClick={() => dispatch(setConditionGRC({targetedEle: countryEle, category:"country"}))}
+                >
+                    <span className={`fi fi-${countryCode[countryEle]} fis`}></span>
+                    {countryEle}
                 </div>
                 : '' 
             ));
@@ -49,7 +60,7 @@ const FilterCountry = ({ countries }) => {
                 />
             </div>
             <div className="products-filters-box-grape-country">
-                {countries && displayCountries()}
+                {country && displayCountry()}
             </div>
         </fieldset>
     );

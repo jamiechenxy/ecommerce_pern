@@ -1,27 +1,39 @@
 import React, { useState } from "react";
 import { MdSearch } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { selectConditionRegion } from "../../features/productSlice";
+import { filterActivity } from "../../utils/filterActivity";
+import { setConditionGRC } from "../../features/productSlice";
 
-const FilterRegion = ({ regions }) => {
+const FilterRegion = ({ region }) => {
+    const dispatch = useDispatch();
+    const conditionRegion = useSelector(selectConditionRegion);
     const [keyword, setKeyword] = useState('');
 
     const handleKeywordChange = (e) => {
         setKeyword(e.currentTarget.value);
     }
 
-    const displayRegions = () => {
-        if (!keyword && regions.length > 0) {
-            return regions.map((region, index) => (
+    const displayRegion = () => {
+        if (!keyword && region.length > 0) {
+            return region.map((regionEle, index) => (
                 index < 10 ? 
-                <div className="filter-grape-country" key={index}>
-                    {region}
+                <div className={`filter-grape-country${filterActivity(regionEle, conditionRegion)}`} 
+                    key={index}
+                    onClick={() => dispatch(setConditionGRC({targetedEle: regionEle, category:"region"}))}
+                >
+                    {regionEle}
                 </div>
                 : ''
             ));
-        } else if (keyword && regions.length > 0) {
-            return regions.map((region, index) => (
-                region.toLowerCase().includes(keyword.toLowerCase()) ? 
-                <div className="filter-grape-country" key={index}>
-                    {region}
+        } else if (keyword && region.length > 0) {
+            return region.map((regionEle, index) => (
+                regionEle.toLowerCase().includes(keyword.toLowerCase()) ? 
+                <div className={`filter-grape-country${filterActivity(regionEle, conditionRegion)}`} 
+                    key={index}
+                    onClick={() => dispatch(setConditionGRC({targetedEle: regionEle, category:"region"}))}
+                >
+                    {regionEle}
                 </div>
                 : '' 
             ));
@@ -47,7 +59,7 @@ const FilterRegion = ({ regions }) => {
                 />
             </div>
             <div className="products-filters-box-grape-country">
-                {regions && displayRegions()}
+                {region && displayRegion()}
             </div>
         </fieldset>
     );

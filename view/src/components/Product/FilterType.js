@@ -1,7 +1,14 @@
 import React from "react";
+import { selectConditionType } from "../../features/productSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { filterActivity } from "../../utils/filterActivity";
+import { setCondtionType } from "../../features/productSlice";
 
 
-const FilterType = ({ wineTypes }) => {
+const FilterType = ({ type }) => {
+    const dispatch = useDispatch();
+    const conditionTpye = useSelector(selectConditionType);
+
     return (
         <fieldset className="products-filters-box" id="filters-wine-type-box">
             <legend className="products-filters-box-title">
@@ -10,9 +17,12 @@ const FilterType = ({ wineTypes }) => {
             </legend>
             <div id="products-filters-box-type">
                 {
-                    wineTypes && wineTypes.map((wineType, index) => (
-                        <div className="filter-wine-type" key={index}>
-                            <p>{wineType}</p>
+                    type && type.map((typeEle, index) => (
+                        <div className={`filter-wine-type${filterActivity(typeEle, conditionTpye)}`} 
+                            key={index}
+                            onClick={() => dispatch(setCondtionType(index))}
+                        >
+                            <p>{typeEle}</p>
                         </div>
                     ))
                 }

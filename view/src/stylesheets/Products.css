@@ -1,19 +1,41 @@
 #products-body-container {
-    /* border: navy solid 1px; */
     width: 100%;
     display: flex;
     flex-direction: column;
 }
-
+ 
+/* headline */
 #products-headline-container {
-    /* border: navy solid 1px; */
-    text-align: center;
-    margin: 3rem auto 3rem 7rem;
-    color: var(--main-theme-color);
+    margin: 2rem 7rem;
+    padding-left: 1rem;
+}
+
+#products-headline-box-1,
+#products-headline-box-2 {
+    text-justify: center;
+    font-weight: 550;
+}
+
+#products-headline-box-2 {
+    font-weight: 380;
+    font-size: 1.3rem;
+}
+
+#products-headline-box-3 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#products-headline-box-3 .filter-grape-country-active {
+    margin-right: 0.5rem;
+}
+
+#products-headline-box-3 .filter-grape-country-active span {
+    font-size: 0.8rem;
+    margin: 0.5rem 0.4rem auto 0;
 }
 
 #products-main-container {
-    /* border: navy solid 1px; */
     margin: 0 7rem;
     display: flex;
     flex-direction: row;
@@ -22,7 +44,6 @@
 
 /* filters */
 #products-filters-container {
-    /* border: aquamarine solid 1px; */
     width: 35%;
     display: flex;
     flex-direction: column;
@@ -30,13 +51,11 @@
 
 .products-filters-box {
     border: none;
-    /* border: blue solid 1px; */
     height: fit-content;
     margin-bottom: 2.9rem;
 }
 
 .products-filters-box-title {
-    /* border: indianred solid 1px; */
     width: 100%;
     display: flex;
     align-items: center;
@@ -54,6 +73,13 @@
     font-weight: 400;
 }
 
+ /* -- -- -- active filter option */
+.filter-wine-type-active,
+.filter-grape-country-active {
+    background-color: brown !important; 
+    color: white !important;
+}
+
 /* -- -- wine type */
 #products-filters-box-type {
     /* border: red solid 1px; */
@@ -65,7 +91,8 @@
     margin-top: 1.5rem;
 }
 
-.filter-wine-type {
+.filter-wine-type, 
+.filter-wine-type-active {
     border-radius: 5rem;
     height: 2rem;
     width: 7.5rem;
@@ -75,8 +102,12 @@
     justify-content: center;
 }
 
+.filter-wine-type:hover, 
+.filter-wine-type-active:hover {
+    cursor: pointer;
+} 
+
 .filter-wine-type p {
-    /* border: chartreuse solid 0.05rem; */
     font-size: 0.9rem;
     font-weight: 450;
     color: brown;
@@ -84,7 +115,6 @@
 
 /* -- -- price range */
 #products-filters-box-price {
-    /* border: thistle solid 1px; */
     display: flex;
     align-items: end;
     justify-content: space-between;
@@ -100,7 +130,6 @@
 
 /* slider */
 .filter-slider {
-    /* border: greenyellow solid 1px; */
     width: 100%;
     height: 1.5rem;
     display: flex;
@@ -173,14 +202,12 @@
 
 .filter-rating-radio .filter-rating-radio-stars-holder {
     display: inline-block;
-    /* border: black solid 1px; */
     position: relative;
     vertical-align: middle;
     margin-left: 0.5rem;
 }
 
 .filter-rating-radio p {
-    /* border: black solid 1px; */
     margin: 0 0 0 0.5rem;
     font-size: 0.8rem;
     font-weight: 400;
@@ -202,17 +229,14 @@
 }
 
 .filter-search-icon {
-    /* border: red solid 1px; */
     display: inline-block;
     vertical-align: middle;
     color: lightgrey;
     font-size: 1.5rem;
-    /* position: relative; */
 }
 
 .filter-search-line {
     border: none;
-    /* border-bottom: #ddd solid 0.1rem; */
     display: inline-block;
     vertical-align: middle;
 }
@@ -223,15 +247,16 @@
 }
 
 .products-filters-box-grape-country {
-    /* border: cadetblue solid 1px; */
     height: min-content;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
 }
 
-.filter-grape-country {
+.filter-grape-country,
+.filter-grape-country-active {
     height: 1.8rem;
+    width: fit-content;
     padding: 0 0.5rem;
     border: brown solid 0.08rem;
     border-radius: 2rem;
@@ -242,15 +267,20 @@
     margin: 0.3rem 0.2rem;
 }
 
+.filter-grape-country:hover,
+.filter-grape-country-active:hover {
+    cursor: pointer;
+}
+
 /* -- country filter */
-.filter-grape-country span {
+.filter-grape-country span,
+.filter-grape-country-active span {
     font-size: 1rem;
 }
 
 
 /* product list */
 #products-product-list-container {
-    /* border: darkgoldenrod solid 1px; */
     width: 63%;
     display: flex;
     flex-direction: column;
@@ -277,7 +307,6 @@
 
 /* -- product info box */
 .product-box {
-    /* border: rebeccapurple solid 1px; */
     margin-left: 11%;
     height: 100%;
     width: 85%;
@@ -287,7 +316,6 @@
 
 /* -- -- product wine info */
 .wine-info-cube {
-    /* border: black solid 1px; */
     width: 65%;
     padding: 1rem 0;
 }

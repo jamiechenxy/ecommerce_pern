@@ -1,83 +1,41 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { 
-    loadFilter,
-    loadProductList, 
+    selectCondition, 
     selectFilter, 
-    selectFilterHasError, 
-    selectFilterIsLoading, 
-    selectProductHasError, 
-    selectProductIsLoading, 
     selectProductList, 
 } from "../../features/productSlice";
-import TextLineLoading from "../../loading/TextLineLoading";
-import ProductListLoading from "../../loading/ProductListLoading";
-import Product from "./Product";
 import "../../stylesheets/Products.css";
 import "../../stylesheets/ProductListLoading.css";
-import FilterType from "./FilterType";
-import FilterSlider from "./FilterSlider";
-import FilterRating from "./FilterRating";
-import FilterGrape from "./FilterGrape";
-import FilterCountry from "./FilterCountry";
-import FilterRegion from "./FilterRegion";
+import ProductList from "./ProductList";
+import FilterList from "./FilterList";
+import ProductHeadline from "./ProductHeadline";
 
 
 const Products = () => {
-    const products = useSelector(selectProductList);
-    const productIsLoading = useSelector(selectProductIsLoading);
-    const productHasError = useSelector(selectProductHasError);
     const filter = useSelector(selectFilter);
-    const filterIsLoading = useSelector(selectFilterIsLoading);
-    const filterHasError = useSelector(selectFilterHasError);
+    const products = useSelector(selectProductList);
+    const condition = useSelector(selectCondition);
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        setTimeout(() => {
-            dispatch(loadFilter());
-            dispatch(loadProductList());  
-        }, 500);
-    }, []);
-
-    if (productIsLoading && filterIsLoading && products.length===0) {
-        return (
-            <div id="products-body-container">
-                <TextLineLoading lines={1} />
-                <div id="products-product-list-container">
-                    <ProductListLoading numOfcontainers={4} />
-                </div>
-            </div>
-        )
-    }
 
     return (
         <div id="products-body-container">
-            <h2 id="products-headline-container">
-                Finest Selections For Delightful Living!
-            </h2>
+                <ProductHeadline 
+                    numOfSelections={products.length} 
+                    condition={condition}
+                    filterType={filter.type}
+                    dispatch={dispatch}
+                />
             <div id="products-main-container">
-
-                <div id="products-filters-container">
-                    {filter.wineTypes && <FilterType wineTypes={filter.wineTypes}/>}
-                    <FilterSlider />
-                    <FilterRating />
-                    {filter.grapes && <FilterGrape grapes={filter.grapes}/>}
-                    {filter.regions && <FilterRegion regions={filter.regions}/>}
-                    {filter.countries && <FilterCountry countries={filter.countries}/>}
-                </div>
-            
-                <div id="products-product-list-container">
-                    {
-                        products && products.map((product, index) => (
-                            <Product 
-                                product={product}
-                                index={index}
-                                dispatch={dispatch}
-                                key={index}
-                            />
-                        ))
-                    }
-                </div>
+                <FilterList 
+                    filter={filter}
+                    dispatch={dispatch} 
+                />
+                <ProductList 
+                    products={products}
+                    condition={condition} 
+                    dispatch={dispatch} 
+                />
             </div>
         </div>
     );
