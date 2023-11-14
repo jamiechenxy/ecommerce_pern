@@ -19,6 +19,7 @@ import OrderDetails from '../components/Orders/OrderDetails';
 import { loadUserInfo, selectSessionHasError, selectSessionIsLoading, selectUser } from '../features/sessionSlice';
 import PaymentIntermedia from '../components/Payment/PaymentIntermedia';
 import { UserInfoContext } from './Context';
+import { loadFilter } from '../features/productSlice';
 
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -49,8 +50,12 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (userInfo===undefined)
+    if (userInfo===undefined) {
       dispatch(loadUserInfo());
+    }
+
+    dispatch(loadFilter());
+
   }, [dispatch]);
 
   if (sessionIsLoading) {

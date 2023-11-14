@@ -16,8 +16,13 @@ const interval = Math.floor(1000 / (marks.length - 1));
 
 // Transform the original values to be evenly distributed
 // // return obj: { 'position': value }
-export const transformedMarks = marks.reduce((acc, curr, idx) => {
+export const marksToPrices = marks.reduce((acc, curr, idx) => {
   const position = interval * idx;
   acc[position] = curr;
+  return acc;
+}, {});
+
+export const pricesToMakers = Object.entries(marksToPrices).reduce((acc, [key, value]) => {
+  acc[value] = key;
   return acc;
 }, {});

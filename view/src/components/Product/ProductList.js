@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import Product from "./Product";
 import { 
@@ -9,14 +9,31 @@ import {
 import ProductListLoading from "../../loading/ProductListLoading";
 
 const ProductList = ({ products, condition, dispatch }) => {
+    const debounceTimeoutRef = useRef();
     const productIsLoading = useSelector(selectProductIsLoading);
     const productHasError = useSelector(selectProductHasError);
 
-    useEffect(() => {
-        setTimeout(() => {
-            dispatch(loadProductList());  
+    const debouncedAction = useCallback(() => {
+        if (debounceTimeoutRef.current) {
+            clearTimeout(debounceTimeoutRef.current);
+        }
+
+        debounceTimeoutRef.current = setTimeout(() => {
+            dispatch(loadProductList());
         }, 500);
     }, [condition, dispatch]);
+
+    useEffect(() => {
+
+        debouncedAction();
+
+        return () => {
+            if (debounceTimeoutRef.current) {
+                clearTimeout(debounceTimeoutRef.current);
+            }
+        };
+
+    }, [condition, debouncedAction]);
 
     if (productIsLoading) {
         return (

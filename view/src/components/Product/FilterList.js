@@ -11,11 +11,11 @@ import FilterRegion from "./FilterRegion";
 
 const FilterList = ({ filter, dispatch }) => {
 
-    useEffect(() => {
-        setTimeout(() => {
-            dispatch(loadFilter());
-        }, 500);
-    }, []);
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         dispatch(loadFilter());
+    //     }, 500);
+    // }, []);
 
     return (
         <div id="products-filters-container">

@@ -104,7 +104,7 @@ const ProductHeadline = ({ numOfSelections, condition, filterType, dispatch }) =
             <div id="products-headline-box-3">
                 {
                     conditionGRCArr && conditionGRCArr.map((ele, index) => (
-                        <div className={`filter-grape-country-active`} 
+                        <div className="filter-grape-country-active"
                             key={index}
                             onClick={() => removeCondition(ele)}
                         >

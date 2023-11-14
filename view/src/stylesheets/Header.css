@@ -1,6 +1,16 @@
+@keyframes appearFromTop {
+    from {
+        transform: translateY(-10%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 #header-container {
     box-shadow: var(--box-shadow);
-
 }
 
 #top-header,
@@ -208,6 +218,54 @@
     margin: 0;
     font-size: 1rem;
 }
+
+/* -- -- product nav dropdown */
+.header-product-dropdown {
+    position: absolute;
+    display: grid;
+    grid-template: repeat(4, 1fr) / repeat(3, 1fr);
+    gap: 1.5rem;
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    align-items: center;
+    min-height: 10rem;
+    min-width: 30rem;
+    padding: 2.5rem 0 2.5rem 2rem;
+    margin-top: 19.3rem;
+    z-index: 5;
+    background-color: white;
+    box-shadow: var(--box-shadow);
+    border-radius: 0.3rem;
+    animation: appearFromTop 0.3s ease forwards;
+}
+
+.header-product-dropdown::before {
+    content: "";
+    position: absolute;
+    top: -0.8rem;
+    left: 9%;
+    transform: translate(-50%);
+    border-left: 0.9rem solid transparent;
+    border-right: 0.9rem solid transparent;
+    border-bottom: 0.9rem solid white;
+}
+
+.header-product-dropdown-nav {
+    /* display: block; */
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    font-size: 1rem;
+    margin-right: 1.5rem;
+    /* font-size: 1rem; */
+    /* border: orange solid 1px; */
+    /* margin: 0 1rem; */
+    /* padding: 0; */
+    /* max-width: fit-content;
+    max-height: fit-content; */
+}
+
+
 
 /* old version header */
 .navigator,

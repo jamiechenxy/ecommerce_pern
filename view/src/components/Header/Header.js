@@ -2,23 +2,63 @@ import "../../stylesheets/Header.css";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { selectLoginStatus, selectUser } from "../../features/sessionSlice";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { PiWineLight, PiShoppingCart } from "react-icons/pi";
 import { GiGrapes } from "react-icons/gi";
 import { SlLocationPin } from "react-icons/sl";
 import { RiUserLine, RiSearchLine } from "react-icons/ri";
 import { MdOutlineLocalOffer } from "react-icons/md";
 import UserIconDropdown from "./UserIconDropdown";
+import HeaderGrapesNav from "./HeaderGrapesNav";
+import { 
+    selectFilter,
+    setConditionGRC,
+    setCondtionType,
+    adjustToSingleGrapeCondition
+} from "../../features/productSlice";
+
 
 
 const Header = () => {
+    const dispatch = useDispatch();
     const loginStatus = useSelector(selectLoginStatus);
     const userInfo = useSelector(selectUser);
+    const filter = useSelector(selectFilter);
     const [showUserIconDropdown, setShowUserIconDropdown] = useState(false);
+    // const [showContentNavDropdown, setShowContentNavDropdown] = useState({
+    //     grapes: false,
+    //     region: false,
+    //     offers: false,
+    // });
+    // console.log('showContentNavDropdown:', showContentNavDropdown);
 
     const handleClickUserIcon = () => {
         showUserIconDropdown ? setShowUserIconDropdown(false) : setShowUserIconDropdown(true);
     };
+
+    // product dropdown event handlers
+    const showProductDropdown = (hideTimoutRef, setVisible) => {
+        if (hideTimoutRef.current) {
+            clearTimeout(hideTimoutRef.current);
+        }
+
+        setVisible(true);
+    };
+
+    const hideProductDropdown = (hideTimoutRef, setVisible) => {
+        hideTimoutRef.current = setTimeout(() => {
+            setVisible(false);
+        }, 500)
+    };
+    //
+
+    // const handleMouseInContentNav = (category) => {
+    //     const stateToChange = showContentNavDropdown[category];
+    //     setShowContentNavDropdown({
+    //         ...showContentNavDropdown,
+    //         stateToChange: true,
+    //     })
+    // };
 
     return(
         <div id="header-container">
@@ -41,7 +81,7 @@ const Header = () => {
                     {
                         loginStatus ? 
                         <>
-                            <NavLink className="header-function-cube-nav" 
+                            <nav className="header-function-cube-nav" 
                                 onClick={handleClickUserIcon}
                             >
                                 <RiUserLine id="header-user-icon" />
@@ -50,7 +90,7 @@ const Header = () => {
                                         userInfo={userInfo}
                                     />
                                 }
-                            </NavLink>
+                            </nav>
 
                             <NavLink className="header-function-cube-nav" 
                                 to="/cart"
@@ -91,13 +131,16 @@ const Header = () => {
 
             <div id="products-navigation-header">
                 <div className="header-content-box">
+
                     <NavLink className="header-content-box-nav"
                         // className={({isActive})=>isActive?"active-navigator":"navigator"} 
+                        // onMouseEnter={handleClickUserIcon}
                         to="/product"
                     >
                         <PiWineLight className="products-navigation-icons"/> 
                         <h6 className="products-navigation-text">Wines</h6>
                     </NavLink>
+
                     <NavLink className="header-content-box-nav"
                         // className={({isActive})=>isActive?"active-navigator":"navigator"} 
                         to="/product"
@@ -105,13 +148,27 @@ const Header = () => {
                         <MdOutlineLocalOffer className="products-navigation-icons"/> 
                         <h6 className="products-navigation-text">Offers</h6>
                     </NavLink>
-                    <NavLink className="header-content-box-nav"
+
+                    
+                    <HeaderGrapesNav 
+                        dispatch={dispatch}
+                        NavLink={NavLink}
+                        GiGrapes={GiGrapes}
+                        grapes={filter.grapes}
+                        showProductDropdown={showProductDropdown}
+                        hideProductDropdown={hideProductDropdown}
+                        setConditionGRC={setConditionGRC}
+                        setCondtionType={setCondtionType}
+                        adjustToSingleGrapeCondition={adjustToSingleGrapeCondition}
+                    />
+                    {/* <NavLink className="header-content-box-nav"
                         // className={({isActive})=>isActive?"active-navigator":"navigator"} 
                         to="/product"
                     >
                         <GiGrapes className="products-navigation-icons"/> 
                         <h6 className="products-navigation-text">Grapes</h6>
-                    </NavLink>
+                    </NavLink> */}
+
                     <NavLink className="header-content-box-nav"
                         // className={({isActive})=>isActive?"active-navigator":"navigator"} 
                         to="/product"
@@ -119,6 +176,7 @@ const Header = () => {
                         <SlLocationPin className="products-navigation-icons"/> 
                         <h6 className="products-navigation-text">Regions</h6>
                     </NavLink>
+                    
                 </div>
             </div>
         </div>

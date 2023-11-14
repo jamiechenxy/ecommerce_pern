@@ -6,6 +6,7 @@ import {
 } from "../utils/product";
 import qs from "qs";
 
+
 export const loadFilter = createAsyncThunk(
     "product/loadFilter",
     async () => {
@@ -18,7 +19,7 @@ export const loadProductList = createAsyncThunk(
     "product/loadProducts",
     async (_, { getState }) => {
         const startTime = Date.now();
-        const minimumLoadingTime = 2000;
+        const minimumLoadingTime = 1000;
 
         const { condition } = getState().product;
         const queryString = qs.stringify(condition, { arrayFormat: "brackets" });
@@ -57,6 +58,7 @@ const productSlice = createSlice({
         filter: {},
         isLoadingFilter: true,
         hasErrorWithFilter: false,
+        // showHeaderDropdown: false,
     },
     reducers: {
         setViewDetails: (state, action) => {
@@ -100,7 +102,28 @@ const productSlice = createSlice({
                 // assign the filter arr to the concatenation of condition array and returned array by last step
                 state.filter[category] = state.condition[category].concat(state.filter[category]);
             }
-        }
+        },
+        adjustToSingleGrapeCondition: (state, action) => {
+            const { wineType, targetEle, category } = action.payload;
+            state.condition = {
+                ...state.condition,
+                grapes: [],
+                region: [],
+                country: [],
+            };
+            state.condition = {
+                ...state.condition,
+                [category]: [targetEle],
+                type: wineType,
+                price: [0, 1000],
+                rating: 0,
+            };
+            const shifted = state.filter[category].filter((ele) => ele !== targetEle);
+            state.filter[category] = state.condition[category].concat(shifted);
+        },
+        // toggleShowHeaderDropdown: (state, action) => {
+        //     state.showHeaderDropdown = action.payload;
+        // }
     },
     extraReducers: (buidler) => {
         buidler
@@ -135,20 +158,14 @@ const productSlice = createSlice({
 
 // product list part
 export const selectProductList = state => state.product.product;
-
 export const selectProductDetails = state => state.product.product[Number(state.product.viewDetails)];
-
 export const selectProductIsLoading = state => state.product.isLoading;
-
 export const selectProductHasError = state => state.product.hasError;
-
 export const selectViewDetails = state => state.product.viewDetails;
 
 // filter part
 export const selectFilter = state => state.product.filter;
-
 export const selectFilterIsLoading = state => state.product.isLoadingFilter;
-
 export const selectFilterHasError = state => state.product.hasErrorWithFilter;
 
 // condition part
@@ -160,12 +177,19 @@ export const selectConditionGrapes = state => state.product.condition.grapes;
 export const selectConditionRegion = state => state.product.condition.region;
 export const selectConditionCountry = state => state.product.condition.country;
 
+// // util
+// export const selectShowHeaderDropdown = state => state.product.showHeaderDropdown;
+
+
+
 export const { 
     setViewDetails, 
     setConditionGRC,
     setCondtionType,
     setCondtionRating,
     setConditionPrice,
+    // toggleShowHeaderDropdown,
+    adjustToSingleGrapeCondition,
 } = productSlice.actions;
 
 export default productSlice.reducer;

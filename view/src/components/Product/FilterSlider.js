@@ -1,44 +1,31 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
-import { generateSliderMark, transformedMarks } from "../../utils/generateSliderMark";
-import { useDispatch } from "react-redux";
-import { setConditionPrice } from "../../features/productSlice";
+import { marksToPrices, pricesToMakers } from "../../utils/generateSliderMark";
+import { useDispatch, useSelector } from "react-redux";
+import { selectConditionPrice, setConditionPrice } from "../../features/productSlice";
 
 
 const FilterSlider = () => {
+    const conditionPrice = useSelector(selectConditionPrice);
     const dispatch = useDispatch();
-    const debounceTimeoutRef = useRef();
-    const [priceRange, setPriceRange] = useState([transformedMarks[44], transformedMarks[330]]);
-    const marksPositions = Object.keys(transformedMarks).map(Number);
+    const marksPositions = Object.keys(marksToPrices).map(Number);
     const step = marksPositions[1] - marksPositions[0];
-
-    const debouncedAction = useCallback(() => {
-        if (debounceTimeoutRef.current) {
-            clearTimeout(debounceTimeoutRef.current);
-        }
-
-        debounceTimeoutRef.current = setTimeout(() => {
-            dispatch(setConditionPrice(priceRange));
-        }, 500);
-
-    }, [priceRange, dispatch]);
+    const valueInMark = [Number(pricesToMakers[conditionPrice[0]]), Number(pricesToMakers[conditionPrice[1]])];
+    const [priceRange, setPriceRange] = useState(conditionPrice);
 
     useEffect(() => {
-        debouncedAction();
+        setPriceRange(conditionPrice);
 
-        return () => {
-            if (debounceTimeoutRef.current) {
-                clearTimeout(debounceTimeoutRef.current);
-            }
-        }
+    }, [dispatch, conditionPrice]);
 
-    }, [priceRange, debouncedAction]);
-    
-    const handleChange = (values, thumb) => {
-        const newPriceRange = [transformedMarks[values[0]], transformedMarks[values[1]]];
+    const handleChange = (values) => {
+        const newPriceRange = [marksToPrices[values[0]], marksToPrices[values[1]]];
+
         setPriceRange(newPriceRange);
+        
+        dispatch(setConditionPrice(newPriceRange));
     };
-
+    
     return (
         <fieldset className="products-filters-box" id="filters-price-range-box">
             <legend className="products-filters-box-title">
@@ -61,6 +48,7 @@ const FilterSlider = () => {
                     pearling
                     minDistance={5}
                     defaultValue={[44, 330]}
+                    value={valueInMark}
                     onChange={handleChange}
                     step={step}
                     marks={marksPositions}
